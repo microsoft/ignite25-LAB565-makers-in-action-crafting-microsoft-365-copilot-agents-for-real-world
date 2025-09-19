@@ -19,15 +19,15 @@
 
 
 # Project information .........................................
-site_name: "Session Title"
+site_name: "LAB565: Makers in action: crafting Microsoft 365 Copilot Agents for real-world"
 site_url: 
-site_author: Content Creator
+site_author: Paolo Pialorsi
 site_description: >-
   Demo mkdocs for Ignite Repos
 
 # Repository ..................................................
-repo_name: microsoft/Ignite25-Repo-Template
-repo_url: https://github.com/microsoft/Ignite25-Repo-Template
+repo_name: microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world
+repo_url: https://github.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world
 
 # Copyright ...................................................
 copyright: >
