@@ -37,6 +37,13 @@ Every MCP Server can expose:
 - **Resources**: Passive data sources that provide read-only access to information for context, such as file contents, database schemas, or API documentation.
 - **Prompts**: Pre-built instruction templates that tell the model to work with specific tools and resources.
 
+The communication between an MCP Client and the corresponding MCP Server relies on two available protocols:
+
+- **stdio (local)**: for MCP Servers running locally on your environment
+- **Streamable HTTP (remote)**: for MCP Servers publicly available, like the you are going to create in this lab
+
+Regardless what the transport protocol is, the communication relies on JSON-RPC 2.0 messages and can be accessed anonymously or can be secured with API Keys or OAuth 2.0.
+
 You can learn more about MCP reading the content available in the [Model Context Protocol (MCP) for beginners](https://github.com/microsoft/mcp-for-beginners){target=_blank} training class.
 
 ## Exercise 1 : Setting up the MCP Server
