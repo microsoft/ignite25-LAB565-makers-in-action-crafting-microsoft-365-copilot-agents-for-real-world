@@ -65,25 +65,13 @@ The server manages candidates information including:
 - Personal details (firstname, lastname, full name, email)
 - Professional information (spoken languages, skills, current role)
 
-Before starting, make sure you have:
+### Step 2: Building and running the MCP Server
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0){target=_blank}
-- [Visual Studio Code](https://code.visualstudio.com/){target=_blank}
-- [Node.js v.22 or higher](https://nodejs.org/en){target=_blank}
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector){target=_blank}
-- [Dev tunnel](https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/get-started){target=_blank}
-
-<cc-end-step lab="mcs6" exercise="1" step="1" />
-
-### Step 2: Downloading and running the MCP Server
-
-For this lab, you will use a pre-built HR MCP server. Download the server files [from here](https://download-directory.github.io/?url=https://github.com/microsoft/copilot-camp/tree/main/src/make/copilot-studio/path-m-lab-mcs6-mcp/hr-mcp-server&filename=hr-mcp-server){target=_blank}.
-
-Extract the files from the zip and open the target folder with Visual Studio Code. The server is already implemented and ready to run.
+For this lab, you will use a pre-built HR MCP server. Open Visual Studio Code and the open the folder +++c:\labs\hr-mcp-server+++.
 
 ![The outline of the HR MCP Server project in Visual Studio Code showing the server files and candidate data.](../../../assets/images/make/copilot-studio-06/mcp-server-01.png)
 
-The main elements of the project outline are:
+Investigate the main elements and files of the project:
 
 - `Configuration`: folder with the `HRMCPServerConfiguration.cs` file defining the configuration settings for the MCP server.
 - `Data`: folder with the `candidates.json` file providing the list of candidates.
@@ -100,16 +88,11 @@ dotnet run
 
 Check that the MCP server is up and running. You should be able to consume the server via browser at the URL [http://localhost:47002/](http://localhost:47002/){target=_blank}. You will see an error inside a JSON message, that's ok. It means that you are reaching the MCP server.
 
-!!! info
-    The pre-built HR MCP Server provided with this lab is not a production-ready solution. It operates using an in-memory list of candidates and does not retain data across multiple conversation sessions. It was developed specifically for the purpose of this lab, to offer a simple and accessible solution. If you are a professional developer, you may consider it a starting point for understanding the fundamentals of building an MCP server exposed via HTTP. If you like you can improve the server relying on a container app and adding persistence storage. For example, [here](https://github.com/fabianwilliams/hr-mcp-server){target=_blank} you can find a more advanced version of the server, implemented by [Fabian Williams (Microsoft)](https://github.com/fabianwilliams/){target=_blank}.
-
-<cc-end-step lab="mcs6" exercise="1" step="2" />
-
 ### Step 3: Configure the dev tunnel
 
 Now, you need to expose the MCP server with a public URL. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your `localhost` via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
-- Install dev tunnel on your environment following [these instructions](https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/get-started){target=_blank}
+- Open a new terminal windows in Visual Studio Code
 - Login with dev tunnel, executing the following command:
 
 ```console
@@ -137,11 +120,9 @@ Copy the "Connect via browser" URL and save it in a safe place. Open a browser a
 
 Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp`.
 
-<cc-end-step lab="mcs6" exercise="1" step="3" />
-
 ### Step 4: Testing the MCP server
 
-You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector){target=_blank}. Start a terminal window and run the following command:
+You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a terminal window and run the following command:
 
 ```console
 npx @modelcontextprotocol/inspector
@@ -172,8 +153,6 @@ In the **History** section you can always review all the invocations sent to the
 ![The web interface of the MCP Inspector when invoking a tool. There is a green successful message and the actual output of the tool invocation.](../../../assets/images/make/copilot-studio-06/mcp-inspector-04.png)
 
 You are now ready to consume the MCP server from an agent in Microsoft Copilot Studio.
-
-<cc-end-step lab="mcs6" exercise="1" step="4" />
 
 ## Exercise 2 : Creating a New Agent in Copilot Studio
 
