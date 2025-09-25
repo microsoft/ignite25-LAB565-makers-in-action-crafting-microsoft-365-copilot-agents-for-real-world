@@ -28,11 +28,11 @@ Each exercise is crafted to help you develop new skills, reinforce your understa
 
 ===
 
-!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio]()
+!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md?token=GHSAT0AAAAAADKELEAFXSQ7TWK2OWE2VXCQ2GVNQJQ)
 
 ===
 
-!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio]()
+!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-rag.md?token=GHSAT0AAAAAADKELEAF6GXDE7KFVPZ37B3K2GVNQPQ)
 
 ===
 
