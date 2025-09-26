@@ -1,22 +1,8 @@
-# Lab MCS8 - Integrating Azure AI Search for RAG
+# Part 2 - Integrating Azure AI Search for RAG
 
-In this lab, you are going to understand how to enhance your Microsoft Copilot Studio agents with Retrieval-Augmented Generation (RAG) capabilities using Azure AI Search. You'll create a specialized HR Knowledge Agent that can search through candidate documents using vector search, providing intelligent, contextual responses backed by your organization's data. This lab demonstrates how to create powerful AI agents that combine the conversational abilities of Copilot Studio with the advanced search capabilities of Azure AI Search.
+In this lab module, you are going to understand how to enhance your Microsoft Copilot Studio agents with Retrieval-Augmented Generation (RAG) capabilities using Azure AI Search. You'll specialize the HR Candidate Management agent that you created in the previous module to search through candidate documents using vector search, providing intelligent, contextual responses backed by your organization's data. This lab demonstrates how to create powerful AI agents that combine the conversational abilities of Copilot Studio with the advanced search capabilities of Azure AI Search.
 
-<div class="lab-intro-video">
-    <!-- <div style="flex: 1; min-width: 0;">
-        <iframe  src="//www.youtube.com/embed/placeholder" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 16/9;">          
-        </iframe>
-          <div>Get a quick overview of the lab in this video.</div>
-    </div> -->
-    <div style="flex: 1; min-width: 0;">
-   ---8<--- "mcs-labs-prelude.md"
-    </div>
-</div>
-
-!!! important
-    You should have experience with Microsoft Copilot Studio agent creation and basic Azure resource management.
-
-In this lab you will learn:
+In this lab module you will learn:
 
 - How to create and configure Azure AI Search service for knowledge indexing
 - How to import and vectorize PDF documents using Azure AI Search
@@ -54,121 +40,26 @@ In this lab you will learn:
 
     For example, if you search for "software engineering skills," the system can find candidates with "programming expertise" or "development capabilities" even if they don't have the exact words from your search query.
 
-## Exercise 1: Setting up Azure AI Search Service
+## Exercise 1: Creating and Populating the Search Index
 
-In this exercise you are going to create and configure the Azure AI Search service that will serve as the knowledge foundation for your RAG-enabled agent.
+In this exercise you are going to configure the Azure AI Search service that will serve as the knowledge foundation for your RAG-enabled agent.
 
-### Step 1: Creating Azure AI Search Service Resource
+Specifically, in this lab module you are going to rely on a series of pre-provisioned Azure services as follows:
 
-Before integrating with Microsoft Copilot Studio, you need to set up Azure AI Search service to store and index your documents.
-
-Navigate to the [Azure Portal](https://portal.azure.com){target=_blank} and create an Azure AI Search service:
-
-1. Select **Create a resource** and search for `Azure AI Search`
-1. Select the Azure AI Search service and then **Create**
-1. Fill out the following details and select **Review + Create**:
-
-    - **Subscription:** Your Azure subscription
-    - **Resource group:** Select the same resource group used for other labs or create new one: `copilot-camp-rg`
-    - **Service name:** A descriptive name such as `copilotcamp-ai-search` (must be globally unique)
-    - **Location:** Choose the same region as your other Azure resources, if any
-    - **Pricing tier:** Basic (sufficient for this lab)
-
-![The Azure portal interface showing the creation of a new Azure AI Search service with the required fields filled in including subscription, resource group, service name, location, and pricing tier.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-01.png)
-
-Once your Azure AI Search service is created, navigate to your resource:
-
-1. In the **Overview** section, copy and save the **URL** (you'll need this later)
-1. Navigate to **Keys** under **Settings**, in the left navigation bar, and copy the **Primary admin key** (you'll need this later)
-
-Both the URL and admin key will be required when connecting to Azure AI Search from within Microsoft Copilot Studio.
-
-<cc-end-step lab="mcs8" exercise="1" step="1" />
-
-### Step 2: Creating Azure Storage Account
-
-For storing the documents that will be indexed, you need an Azure Storage Account that will work with Azure AI Search.
-
-In the Azure Portal, create a storage account:
-
-1. Select **Create a resource** and search for `Storage Account`
-1. Select Storage Account and then **Create**
-1. Fill out the following details and select **Review + Create**:
-
-    - **Subscription:** Your Azure subscription
-    - **Resource group:** Select the same resource group as your Azure AI Search service
-    - **Storage account name:** A unique name such as `copilotcampstorage` (must be globally unique)
-    - **Region:** Same region as your Azure AI Search service
-    - **Preferred storage type:** Azure Blob Storage or Azure Data Lake Storage Gen 2
-    - **Performance:** Standard
-    - **Redundancy:** Locally redundant storage (LRS)
-
-![The Azure portal interface showing the creation of a storage account with the basic configuration including subscription, resource group, storage account name, region, performance, and redundancy settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-01.png)
-
-After the storage account is created, you'll use it to store the PDF documents before they are indexed by Azure AI Search.
-
-<cc-end-step lab="mcs8" exercise="1" step="2" />
-
-### Step 3: Creating Text Embedding Model
-
-To enable vector search capabilities, you need to create a text embedding model in Azure OpenAI that will convert documents and queries into vector representations.
-
-If you don't already have an Azure OpenAI service instance, create one first:
-
-1. In the Azure Portal, select **Create a resource** and search for `Azure OpenAI`
-1. Select **Azure OpenAI** and then **Create**
-1. Fill out the following details:
-
-    - **Subscription:** Your Azure subscription
-    - **Resource group:** Select the same resource group as your other resources
-    - **Region:** Choose a region that supports Azure OpenAI (such as East US, West Europe, or South Central US)
-    - **Name:** A descriptive name such as `copilotcamp-openai`
-    - **Pricing tier:** Standard S0
-
-1. Move **Next** until the end of the creation wizard and then select **Create**
-1. Wait for the deployment to complete (this may take a few minutes)
-1. Once created, navigate to your Azure OpenAI resource and note the endpoint URL for later use
-
-Now navigate to [Azure AI Foundry](https://oai.azure.com/portal){target=_blank}. If it is the first time that you access the Azure AI Foundry portal, you might need to select the Azure OpenAI instance that you just created. Select the service instance and proceed with the creation of an embedding model going through the following steps:
-
-1. Select 1️⃣ **Deployments** from the left navigation
-1. Select 2️⃣ **+ Deploy model**
-1. Select 3️⃣ **Deploy base model** to start deploying the model
-1. In the popup dialog, search for model 4️⃣ `text-embedding-ada-002`
-1. Select 5️⃣ **Confirm** to start configuring the deployment
-1. When the configuration dialog pops up, configure the following settings:
-
-    - **Deployment name:** `text-embeddings` (remember this name)
-    - **Deployment type:** Standard
-    - **Model version:** 2 (Default)
-    - **Content Filter:** DefaultV2
-
-1. Select 6️⃣ **Deploy** and wait for the deployment to complete
-
-![The Azure OpenAI deployment interface showing the creation of a text-embedding-ada-002 model with the specified configuration including model selection, version, deployment type, name, and content filter settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/openai-embedding-01.png)
-
+- **Azure AI Search**: the search service instance where the vector index will be stored
+- **Azure Storage Account**: used to store a list of resume files used as the knowledge base of the agent
+- **Azure OpenAI**: used to process the content of the resume files relying on a model (`text-embedding-ada-002`) specifically designed to vectorize text documents
 
 ??? info "What does `text-embedding-ada-002` do?"
     The `text-embedding-ada-002` model on Azure OpenAI converts text into numeric vectors that represent the meaning of the text. This allows for vector search, where instead of matching exact words, the search finds text with similar meanings. It works with multiple languages and different content types, making it useful for comparing text across languages and formats. When used with Azure AI Search, it improves search results by finding the most relevant and contextually accurate information. This model is perfect for creating advanced search solutions and applications that need to understand natural language.
 
 The text embedding model is essential for converting both the indexed documents and user queries into vectors that can be compared for semantic similarity.
 
-!!! tip "Tip: Handling quota limitations"
-    If you see a "No quota available" message, you can either:
-
-    1. Select a different region for your deployment
-    1. Request additional quota from the Azure OpenAI quota management page
-    1. Free up resources from other deployments you're not using
-
-<cc-end-step lab="mcs8" exercise="1" step="3" />
-
-## Exercise 2: Creating and Populating the Search Index
-
 In this exercise you will create a search index in Azure AI Search and populate it with candidate resume documents using the integrated vectorization feature.
 
-### Step 1: Preparing Sample Documents
+### Step 1: Inspecting Sample Documents
 
-For this lab, download the sample resume documents that will be indexed for search. Download [fictitious_resumes.zip](https://github.com/microsoft/copilot-camp/raw/main/src/custom-engine-agent/Lab02-RAG/CareerGenie/fictitious_resumes.zip) and unzip the folder to access the PDF files.
+Open the folder `c:\labs\fictitious_resumes` on your lab environment and inspect the list of resume PDF files that you will use as the knowledge base for the agent.
 
 These sample resumes contain diverse candidate profiles with information such as:
 
@@ -181,13 +72,11 @@ These sample resumes contain diverse candidate profiles with information such as
 
 Review the content of these files to understand the type of information that will be searchable through your RAG-enabled agent. Notice also that the documents are written in various languages. This will not be a problem for the `text-embedding-ada-002` model or for the vector index.
 
-<cc-end-step lab="mcs8" exercise="2" step="1" />
-
 ### Step 2: Uploading sample documents in the Storage Account
 
 Using Azure AI Search, you'll create a vector index with your resume documents using the integrated vectorization feature.
 
-Navigate to [Azure Portal](https://portal.azure.com/){target=_blank} and access the Azure Storage Account service instance. 
+Navigate to +++https://portal.azure.com/+++ and access the Azure Storage Account service instance. 
 
 1. Select the 1️⃣ **Containers** in the **Data storage** group of commands in the left navigation
 1. Select the 2️⃣ **+ Add container** command in the command bar
@@ -204,11 +93,9 @@ Once the container has been created, you can upload the resume files following t
 
 ![The Azure Storage Account service instance while uploading files in target container. The commands to upload files are highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-03.png)
 
-<cc-end-step lab="mcs8" exercise="2" step="2" />
-
 ### Step 3: Populating the Vector Index with Integrated Vectorization
 
-Once the resume files are uploaded go back to the home page of the [Azure Portal](https://portal.azure.com/){target=_blank} and access the Azure AI Search service instance. Then select the **Import data (new)** command in the top command bar.
+Once the resume files are uploaded go back to the home page of the +++https://portal.azure.com/+++ and access the Azure AI Search service instance. Then select the **Import data (new)** command in the top command bar.
 
 ![The Azure AI Search service instance overview page with basic information about the service instance. There is a command to "Import data (new)" highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-02.png)
 
@@ -262,41 +149,22 @@ Once the vector index is created, a small dialog confirms the index creation and
 
 ![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-06.png)
 
-<cc-end-step lab="mcs8" exercise="2" step="3" />
-
 ## Exercise 3: Creating the RAG-Enabled Agent
 
-In this exercise you will create a Microsoft Copilot Studio agent that leverages your Azure AI Search index to provide intelligent, document-backed responses about HR candidates.
+In this exercise you will update the Microsoft Copilot Studio agent that you created in the previous module to leverage your Azure AI Search index providing intelligent, document-backed responses about HR candidates.
 
-### Step 1: Creating the HR Knowledge Agent
+### Step 1: Updating the HR Candidate Management agent
 
-Navigate to [Microsoft Copilot Studio](https://copilotstudio.microsoft.com){target=_blank} and create a new agent optimized for knowledge search.
+Navigate to [Microsoft Copilot Studio](https://copilotstudio.microsoft.com) and open the `HR Candidate Management` agent.
 
-Using your work account, access your `Copilot Dev Camp` environment and create a new agent:
-
-1. Select **Create** → **+ New agent**
-1. Choose to manually **Configure** the agent
-
-Define your agent as follows:
-
-- **Name**: 
-
-```text
-HR Knowledge Agent
-```
-
-- **Description**: 
-
-```text
-An intelligent HR assistant that searches through candidate documents using advanced 
-vector search capabilities to provide contextual, document-backed responses
-```
+Update the agent's instructions as follows:
 
 - **Instructions**: 
 
-```text
-You are an intelligent HR Knowledge Assistant specializing in candidate search. 
-You have access to a comprehensive database of candidate resumes through advanced 
+```
+You are a helpful HR assistant that specializes in candidate management. You can help users search for candidates, check their availability, get detailed candidate information, and add new candidates to the system. 
+
+You also have access to a comprehensive database of candidate resumes through advanced 
 vector search capabilities.
 
 When users ask questions, you should:
@@ -318,15 +186,9 @@ You excel at:
 Always provide helpful, accurate information while respecting privacy and being professional.
 ```
 
-![The Microsoft Copilot Studio user experience when creating the "HR Knowledge Agent". There are name, description, and instructions accordingly to the above suggeted settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-01.png)
-
-Select **Create** to create your knowledge-enabled agent.
-
-Once the agent is created, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that `GPT-4o` model is selected in the **Details** panel of the agent's settings.
+Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that `GPT-4o` model is selected in the **Details** panel of the agent's settings.
 
 ![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-02.png)
-
-<cc-end-step lab="mcs8" exercise="3" step="1" />
 
 ### Step 2: Adding Azure AI Search as Knowledge Source
 
@@ -362,11 +224,9 @@ Complete the knowledge source configuration:
 
 The knowledge source will appear in your knowledge sources table with a status of "In progress" while Copilot Studio indexes the metadata. Wait for the status to change to "Ready" before proceeding.
 
-<cc-end-step lab="mcs8" exercise="3" step="2" />
-
 ## Exercise 4: Testing the agent
 
-In this exercise you will test your RAG-enabled agent and learn how to optimize its performance for different types of queries and use cases.
+In this exercise you will test your RAG-enabled agent and learn how to leverage different types of queries and use cases.
 
 ### Step 1: Testing Basic Knowledge Retrieval
 
@@ -374,15 +234,15 @@ Start by testing fundamental search capabilities to ensure your agent can access
 
 In the test panel, try these basic queries to validate the knowledge integration:
 
-```text
+```
 Hello! Can you help me find candidates with software engineering experience?
 ```
 
-```text
+```
 I'm looking for candidates who speak multiple languages. Can you help?
 ```
 
-```text
+```
 Show me candidates with machine learning or AI experience.
 ```
 
@@ -395,30 +255,28 @@ Observe how the agent:
 - Includes citations and references to source documents
 - Uses semantic understanding rather than exact keyword matching
 
-<cc-end-step lab="mcs8" exercise="4" step="1" />
-
 ### Step 2: Testing Complex Query Scenarios
 
 Test more sophisticated scenarios that demonstrate the power of RAG and vector search capabilities.
 
 Try these advanced queries that combine multiple requirements:
 
-```text
+```
 Find candidates suitable for a senior role that requires 5+ years of Python 
 experience and fluency in Spanish
 ```
 
-```text
+```
 I need someone with both frontend and backend development skills. 
 Who would be good for a full-stack position?
 ```
 
-```text
+```
 Can you recommend candidates for a data science position that requires 
 experience with machine learning frameworks?
 ```
 
-```text
+```
 Who has project management experience combined with technical skills?
 ```
 
@@ -430,28 +288,3 @@ Notice how the agent:
 - Explains the reasoning behind candidate recommendations
 - Suggests alternatives when exact matches aren't available
 - Provides context about candidate qualifications
-
-<cc-end-step lab="mcs8" exercise="4" step="2" />
-
----8<--- "mcs-congratulations.md"
-
-You have completed Lab MCS8 - Integrating Azure AI Search for RAG!
-
-In this lab, you learned how to:
-
-- Create and configure Azure AI Search service for enterprise knowledge management
-- Build vector search indexes using integrated vectorization with embedding models
-- Connect Azure AI Search as a knowledge source in Microsoft Copilot Studio
-- Design intelligent agents that leverage RAG for document-backed conversations
-- Test vector search with various query types
-
-Your HR Knowledge Agent now demonstrates the power of combining conversational AI with enterprise search capabilities, enabling users to interact with organizational knowledge using natural language while receiving accurate, well-cited responses based on actual documents.
-
-The RAG patterns you've learned can be applied to many other scenarios including customer support knowledge bases, technical documentation, policy and procedure guides, and any domain where users need to search and understand large document collections through conversational interfaces.
-
-<!-- <a href="../09-agent-to-agent">Start here</a> with Lab MCS9, to learn how to create agent to agent solutions in Copilot Studio.
-<cc-next />  -->
-
-<!-- <cc-award path="Make" /> -->
-
-<img src="https://m365-visitor-stats.azurewebsites.net/copilot-camp/make/copilot-studio/08-rag" />

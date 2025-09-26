@@ -1,6 +1,6 @@
 # Part 1 - Consuming an MCP server
 
-In this module module, you are going to understand how to extend an agent made with Microsoft Copilot Studio using an MCP (Model Context Protocol) server. Specifically, you are going to consume an existing MCP server that provides tools for managing a hypothetical list of candidates for a job role. The MCP server will offer functionalities to:
+In this lab module, you are going to understand how to extend an agent made with Microsoft Copilot Studio using an MCP (Model Context Protocol) server. Specifically, you are going to consume an existing MCP server that provides tools for managing a hypothetical list of candidates for a job role. The MCP server will offer functionalities to:
 
 - List all candidates 
 - Search for candidates by criteria
@@ -69,7 +69,7 @@ For the sake of simplicity, all the candidates are based on a pre-defined list l
 
 ### Step 2: Building and running the MCP Server
 
-Open Visual Studio Code and the open the folder +++c:\labs\hr-mcp-server+++.
+Open Visual Studio Code and the open the folder `c:\labs\hr-mcp-server`.
 
 ![The outline of the HR MCP Server project in Visual Studio Code showing the server files and candidate data.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-server-01.png)
 
@@ -84,7 +84,7 @@ Investigate the main elements and inspect the following files of the project:
 
 Open a new terminal window from within Visual Studio Code or simply start a new terminal window and move to the root folder of the MCP server project that you just opened. Then install dependencies, build, and start the .NET project by invoking the following command:
 
-```console
+```
 dotnet run
 ```
 
@@ -97,7 +97,7 @@ Now, you need to expose the MCP server with a public URL, so that your Microsoft
 - Open a new terminal windows in Visual Studio Code
 - Login with dev tunnel, executing the following command and using the Microsoft 365 credentials available in the Resource tab:
 
-```console
+```
 devtunnel user login
 ```
 
@@ -106,7 +106,7 @@ devtunnel user login
 !!! important
     Replace the `hr-mcp` name suggested below with whatever name you like, in order to have a unique name for your dev tunnel. For example, if your name is Rose you can use `hr-mcp-rose` as the name for your tunnel. In case you will get an error like `Request not permitted. Unauthorized tunnel creation access ...` it means that someone else is already using that name. To solve the issue, simply provide a different name.
 
-```console
+```
 devtunnel create hr-mcp -a --host-header unchanged
 devtunnel port create hr-mcp -p 47002
 devtunnel host hr-mcp
@@ -126,7 +126,7 @@ Be sure to leave both the dev tunnel command and the MCP server running as you d
 
 You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a terminal window and run the following command:
 
-```console
+```
 npx @modelcontextprotocol/inspector
 ```
 
@@ -177,25 +177,22 @@ Choose to **Configure** and define your new agent with the following settings:
 
 - **Name**: 
 
-```text
+```
 HR Candidate Management
 ```
 
 - **Description**: 
 
-```text
+```
 An AI assistant that helps manage HR candidates using MCP server integration 
 for comprehensive candidate management
 ```
 
 - **Instructions**: 
 
-```text
-You are a helpful HR assistant that specializes in candidate management. You can help users search 
-for candidates, check their availability, get detailed candidate information, and add new 
-candidates to the system. 
-Always provide clear and helpful information about candidates, including their skills, experience, 
-contact details, and availability status.
+```
+You are a helpful HR assistant that specializes in candidate management. You can help users search for candidates, check their availability, get detailed candidate information, and add new candidates to the system. 
+Always provide clear and helpful information about candidates, including their skills, experience, contact details, and availability status.
 ```
 
 ![The agent creation dialog in Copilot Studio with the name, description, and instructions filled in for the "HR Candidate Management" agent.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/create-agent-01.png)
@@ -268,7 +265,7 @@ All the tools exposed by the MCP server are now available to your agent, as you 
 
 Publish your agent by selecting **Publish** in the top right corner. Once published, test the agent in the integrated Test panel using the following prompt:
 
-```text
+```
 List all candidates
 ```
 
@@ -302,7 +299,7 @@ You will see the interface to add the agent to Microsoft 365 Copilot, select **A
 You can now play with the agent in Microsoft 365 Copilot, notice the suggested prompts in the UI of the agent.
 Now, for example, you can try with another prompt like:
 
-```text
+```
 Search for candidate Alice
 ```
 
@@ -319,7 +316,7 @@ Once connected, you will be able to run again the prompt and get the expected re
 
 It is now time to test a much more advanced tool, like the `add_candidate` one to add a new candidate to the HR system. Use the following prompt:
 
-```text
+```
 Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, 
 email: john.smith@email.com, speaks English and Spanish
 ```
@@ -334,19 +331,19 @@ You can double check the outcome by listing again the whole list of candidates. 
 
 You can also have fun with other prompts like:
 
-```text
+```
 Update the candidate with email bob.brown@example.com to speak also French
 ```
 
 or:
 
-```text
+```
 Add skill "Project Management" to candidate bob.brown@example.com
 ```
 
 or:
 
-```text
+```
 Remove candidate bob.brown@example.com
 ```
 
