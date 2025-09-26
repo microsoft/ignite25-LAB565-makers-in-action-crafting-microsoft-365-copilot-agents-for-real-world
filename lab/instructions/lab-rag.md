@@ -82,7 +82,7 @@ Navigate to +++https://portal.azure.com/+++ and login with the Microsoft 365 wor
 **Password: +++@lab.CloudPortalCredential(User1).Password+++**
 
 Skip the Azure tour, unless you want to go through it.
-Then, access the resource group with name **LAB565-ResourceGroup** and in there access the Azure Storage Account service instance.
+Then, access the resource group with name **@lab.CloudResourceGroup(1).Name** and in there access the Azure Storage Account service instance.
 
 1. Select the 1️⃣ **Containers** in the **Data storage** group of commands in the left navigation
 1. Select the 2️⃣ **+ Add container** command in the command bar
@@ -261,7 +261,9 @@ Observe how the agent:
 - Includes citations and references to source documents
 - Uses semantic understanding rather than exact keyword matching
 
-### Step 2: Testing Complex Query Scenarios
+### Step 2: Testing Complex Query Scenarios (bonus step)
+
+This is a bonus step, depending on the leftover time you can skip it or you can go through it.
 
 Test more sophisticated scenarios that demonstrate the power of RAG and vector search capabilities.
 

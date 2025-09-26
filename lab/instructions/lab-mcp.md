@@ -126,7 +126,7 @@ The command line will display the connection information, such as:
 
 Copy the "Connect via browser" URL and save it in a safe place.
 
-Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp--@lab.User.Id`.
+Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp-@lab.User.Id`.
 
 ### Step 4: Testing the MCP server
 
@@ -319,6 +319,10 @@ However, since we are in the Microsoft 365 Copilot context, you will need to con
 Once connected, you will be able to run again the prompt and get the expected response.
 
 ![Microsoft 365 Copilot showing information about the candidate Alice Johnson, who is matching the search criteria defined in the prompt.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-03.png)
+
+### Step 3: Advanced interaction with the agent (bonus step)
+
+This is a bonus step, depending on the leftover time you can skip it or you can go through it.
 
 It is now time to test a much more advanced tool, like the `add_candidate` one to add a new candidate to the HR system. Use the following prompt:
 
