@@ -74,7 +74,7 @@ Navigate to the [Azure Portal](https://portal.azure.com){target=_blank} and crea
     - **Location:** Choose the same region as your other Azure resources, if any
     - **Pricing tier:** Basic (sufficient for this lab)
 
-![The Azure portal interface showing the creation of a new Azure AI Search service with the required fields filled in including subscription, resource group, service name, location, and pricing tier.](../../../assets/images/make/copilot-studio-08/azure-search-01.png)
+![The Azure portal interface showing the creation of a new Azure AI Search service with the required fields filled in including subscription, resource group, service name, location, and pricing tier.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-01.png)
 
 Once your Azure AI Search service is created, navigate to your resource:
 
@@ -103,7 +103,7 @@ In the Azure Portal, create a storage account:
     - **Performance:** Standard
     - **Redundancy:** Locally redundant storage (LRS)
 
-![The Azure portal interface showing the creation of a storage account with the basic configuration including subscription, resource group, storage account name, region, performance, and redundancy settings.](../../../assets/images/make/copilot-studio-08/azure-storage-01.png)
+![The Azure portal interface showing the creation of a storage account with the basic configuration including subscription, resource group, storage account name, region, performance, and redundancy settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-01.png)
 
 After the storage account is created, you'll use it to store the PDF documents before they are indexed by Azure AI Search.
 
@@ -145,7 +145,7 @@ Now navigate to [Azure AI Foundry](https://oai.azure.com/portal){target=_blank}.
 
 1. Select 6️⃣ **Deploy** and wait for the deployment to complete
 
-![The Azure OpenAI deployment interface showing the creation of a text-embedding-ada-002 model with the specified configuration including model selection, version, deployment type, name, and content filter settings.](../../../assets/images/make/copilot-studio-08/openai-embedding-01.png)
+![The Azure OpenAI deployment interface showing the creation of a text-embedding-ada-002 model with the specified configuration including model selection, version, deployment type, name, and content filter settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/openai-embedding-01.png)
 
 
 ??? info "What does `text-embedding-ada-002` do?"
@@ -194,7 +194,7 @@ Navigate to [Azure Portal](https://portal.azure.com/){target=_blank} and access 
 1. Provide a name 3️⃣ for the new container, for example `resumes`
 1. Select 4️⃣ **Create** to create the actual container
 
-![The Azure Storage Account service instance while showing the "Containers" page. There is a command to "+ Add container" highlighted.](../../../assets/images/make/copilot-studio-08/azure-storage-02.png)
+![The Azure Storage Account service instance while showing the "Containers" page. There is a command to "+ Add container" highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-02.png)
 
 Once the container has been created, you can upload the resume files following these steps:
 
@@ -202,7 +202,7 @@ Once the container has been created, you can upload the resume files following t
 1. Drag and drop the resume files or select 2️⃣ **Browse for files** and select the resume files
 1. Select the 3️⃣ **Upload** command and wait for the upload to complete
 
-![The Azure Storage Account service instance while uploading files in target container. The commands to upload files are highlighted.](../../../assets/images/make/copilot-studio-08/azure-storage-03.png)
+![The Azure Storage Account service instance while uploading files in target container. The commands to upload files are highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-03.png)
 
 <cc-end-step lab="mcs8" exercise="2" step="2" />
 
@@ -210,15 +210,15 @@ Once the container has been created, you can upload the resume files following t
 
 Once the resume files are uploaded go back to the home page of the [Azure Portal](https://portal.azure.com/){target=_blank} and access the Azure AI Search service instance. Then select the **Import data (new)** command in the top command bar.
 
-![The Azure AI Search service instance overview page with basic information about the service instance. There is a command to "Import data (new)" highlighted.](../../../assets/images/make/copilot-studio-08/azure-search-02.png)
+![The Azure AI Search service instance overview page with basic information about the service instance. There is a command to "Import data (new)" highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-02.png)
 
 A new page will show up, through which you can configure the data import process. Select the **Azure Blob Storage** data source.
 
-![The Azure AI Search service instance page to start importing data. There is the "Azure Blob Storage" data source highlighted.](../../../assets/images/make/copilot-studio-08/azure-search-03.png)
+![The Azure AI Search service instance page to start importing data. There is the "Azure Blob Storage" data source highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-03.png)
 
 Right after, select **RAG** as the scenario that you are targeting.
 
-![The Azure AI Search service instance page to choose the target scenario. There is the "RAG" scenario highlighted.](../../../assets/images/make/copilot-studio-08/azure-search-04.png)
+![The Azure AI Search service instance page to choose the target scenario. There is the "RAG" scenario highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-04.png)
 
 Now configure the RAG scenario accordingly to the following settings:
 
@@ -256,11 +256,11 @@ Now configure the RAG scenario accordingly to the following settings:
     - Here you can provide a prefix for the index, indexer, data source, and skillset that will be created. For example you can use the value `resumes`
     - Review the settings and when you are ready select **Create** to create and feed the vector index
 
-![The Azure AI Search service instance page to recap the settings that will be applied when creating and feeding the vector index.](../../../assets/images/make/copilot-studio-08/azure-search-05.png)
+![The Azure AI Search service instance page to recap the settings that will be applied when creating and feeding the vector index.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-05.png)
 
 Once the vector index is created, a small dialog confirms the index creation and availability. Select the **Start searching** command to start playing with the index. In the search index page, you can simply select the **Search** command and see the output. Notice that, for every value in the index, you also have a `text_vector` field that contains the text vectorized using the `text-embedding-ada-002` model.
 
-![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](../../../assets/images/make/copilot-studio-08/azure-search-06.png)
+![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-06.png)
 
 <cc-end-step lab="mcs8" exercise="2" step="3" />
 
@@ -318,13 +318,13 @@ You excel at:
 Always provide helpful, accurate information while respecting privacy and being professional.
 ```
 
-![The Microsoft Copilot Studio user experience when creating the "HR Knowledge Agent". There are name, description, and instructions accordingly to the above suggeted settings.](../../../assets/images/make/copilot-studio-08/mcs-agent-01.png)
+![The Microsoft Copilot Studio user experience when creating the "HR Knowledge Agent". There are name, description, and instructions accordingly to the above suggeted settings.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-01.png)
 
 Select **Create** to create your knowledge-enabled agent.
 
 Once the agent is created, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that `GPT-4o` model is selected in the **Details** panel of the agent's settings.
 
-![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](../../../assets/images/make/copilot-studio-08/mcs-agent-02.png)
+![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-02.png)
 
 <cc-end-step lab="mcs8" exercise="3" step="1" />
 
@@ -338,7 +338,7 @@ Navigate to the **Knowledge** section and add your search index:
 1. From the **Add knowledge** dialog, select **Featured**
 1. Select **Azure AI Search**
 
-![The knowledge sources interface showing the option to add Azure AI Search as a featured knowledge source, with various other knowledge source options visible.](../../../assets/images/make/copilot-studio-08/mcs-add-knowledge-01.png)
+![The knowledge sources interface showing the option to add Azure AI Search as a featured knowledge source, with various other knowledge source options visible.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-add-knowledge-01.png)
 
 Configure the Azure AI Search connection:
 
@@ -351,14 +351,14 @@ Configure the Azure AI Search connection:
 
 1. Select **Create** to establish the connection (a green checkmark confirms success)
 
-![The Azure AI Search connection configuration dialog showing the authentication type selection, endpoint URL field, and admin key field for establishing the connection.](../../../assets/images/make/copilot-studio-08/mcs-add-knowledge-02.png)
+![The Azure AI Search connection configuration dialog showing the authentication type selection, endpoint URL field, and admin key field for establishing the connection.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-add-knowledge-02.png)
 
 Complete the knowledge source configuration:
 
 1. Select the index with name `resumes` (or whatever else name you used when you created the index)
 1. Select **Add to agent** to complete the integration
 
-![The Azure AI Search connection configuration dialog allowing you to select the index to use as the new knowledge base in the agent.](../../../assets/images/make/copilot-studio-08/mcs-add-knowledge-03.png)
+![The Azure AI Search connection configuration dialog allowing you to select the index to use as the new knowledge base in the agent.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-add-knowledge-03.png)
 
 The knowledge source will appear in your knowledge sources table with a status of "In progress" while Copilot Studio indexes the metadata. Wait for the status to change to "Ready" before proceeding.
 
@@ -386,7 +386,7 @@ I'm looking for candidates who speak multiple languages. Can you help?
 Show me candidates with machine learning or AI experience.
 ```
 
-![The test panel showing a conversation with the HR Knowledge Agent where the user asks about software engineering candidates and receives detailed responses with proper citations from the indexed documents.](../../../assets/images/make/copilot-studio-08/mcs-agent-03.png)
+![The test panel showing a conversation with the HR Knowledge Agent where the user asks about software engineering candidates and receives detailed responses with proper citations from the indexed documents.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-03.png)
 
 Observe how the agent:
 
@@ -422,7 +422,7 @@ experience with machine learning frameworks?
 Who has project management experience combined with technical skills?
 ```
 
-![The test panel showing complex multi-criteria queries with the agent providing detailed candidate recommendations, explanations of market insights, and suggestions for the best candidate to select.](../../../assets/images/make/copilot-studio-08/mcs-agent-04.png)
+![The test panel showing complex multi-criteria queries with the agent providing detailed candidate recommendations, explanations of market insights, and suggestions for the best candidate to select.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-04.png)
 
 Notice how the agent:
 
