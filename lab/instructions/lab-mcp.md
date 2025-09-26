@@ -88,19 +88,24 @@ Open a new terminal window from within Visual Studio Code or simply start a new 
 dotnet run
 ```
 
-Check that the MCP server is up and running. You should be able to consume the server via browser at the URL [http://localhost:47002/](http://localhost:47002/). You will see an error inside a JSON message, that's ok. It means that you are reaching the MCP server.
+Check that the MCP server is up and running. You should be able to consume the server via browser at the URL `http://localhost:47002/`. You will see an error inside a JSON message, that's ok. It means that you are reaching the MCP server.
 
 ### Step 3: Configure the dev tunnel
 
 Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your `localhost` via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
 - Open a new terminal windows in Visual Studio Code
-- Login with dev tunnel, executing the following command and using the Microsoft 365 credentials available in the Resource tab:
+- Login with dev tunnel, executing the following command and using the Microsoft 365 work or school account:
+
+**Username: +++@lab.CloudPortalCredential(User1).Username+++**
+
+**Password: +++@lab.CloudPortalCredential(User1).Password+++**
 
 ```
 devtunnel user login
 ```
 
+- If prompted by the login dialog, select "No, this app only"
 - Host your dev tunnel, executing the following commands:
 
 !!! important
@@ -108,7 +113,13 @@ devtunnel user login
 
 ```
 devtunnel create hr-mcp -a --host-header unchanged
+```
+
+```
 devtunnel port create hr-mcp -p 47002
+```
+
+```
 devtunnel host hr-mcp
 ```
 
@@ -116,9 +127,7 @@ The command line will display the connection information, such as:
 
 ![The dev tunnel running in a console window showing the hosting port, the connect via browser URL, and the URL to inspect network activity.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-server-02.png)
 
-Copy the "Connect via browser" URL and save it in a safe place. Open a browser and navigate to the just copied URL. You might need to confirm that you want to consume the MCP server via the dev tunnel through a confirmation page like the following one.
-
-![The confirmation page to access the MCP server via the dev tunnel. There is a button to "Continue" that you should select.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-server-03.png)
+Copy the "Connect via browser" URL and save it in a safe place.
 
 Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp` (or whatever else is the name of your tunnel).
 
@@ -163,7 +172,11 @@ In this exercise you are going to create a new agent in Microsoft Copilot Studio
 
 In order to use Microsoft Copilot Studio in your lab environment, you need to activate a product license following these steps:
 
-- Open a browser and, using the work account of your target Microsoft 365 tenant, go to [https://copilotstudio.microsoft.com](https://copilotstudio.microsoft.com).
+- Open a browser and go to `https://copilotstudio.microsoft.com`. Login using the work or school account of your Microsoft 365 tenant:
+
+**Username: +++@lab.CloudPortalCredential(User1).Username+++**
+
+**Password: +++@lab.CloudPortalCredential(User1).Password+++**
 
 - If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period.
 
@@ -171,7 +184,7 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 
 ### Step 1: Creating the new agent
 
-Once you activated the Copilot Studio license, select **Create** in the left navigation menu of Copilot Studio, then choose **Agent** to create a new agent.
+Once you activated the Copilot Studio license, select **Create** in the left navigation menu of Copilot Studio, then choose **Agent** to create a new agent, or simply start with the agent creation wizard that you will see for the first time.
 
 Choose to **Configure** and define your new agent with the following settings:
 
@@ -201,7 +214,7 @@ Select **Create** to create your new agent.
 
 ### Step 2: Configuring the agent's conversation starters
 
-After creating the agent, you'll be taken to the agent configuration page. In the **Suggested prompts** section, add these helpful prompts:
+After creating the agent, you'll be taken to the agent configuration page. Wait for the **Publish** command in the upper right corner to become enabled. Then, scroll down and in the **Suggested prompts** section, add these helpful prompts:
 
 1. Title: `List all candidates` - Prompt: `List all the candidates`
 1. Title: `Search candidates` - Prompt: `Search for candidates with name [NAME_TO_SEARCH]`
@@ -270,7 +283,7 @@ List all candidates
 ```
 
 The agent should use the MCP server's `list_candidates` tool to return a complete list of all candidates in your HR system.
-However, in order to being able to consume the list of candidates you will need to connect to the target connector. As such, Copilot Studio will ask you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
+However, in order to being able to consume the list of candidates you might need to connect to the target connector. As such, if Copilot Studio will ask you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
 
 ![The initial dialog with the agent, which prompts the user to open the connection manager to connect to the MCP server and then to retry the request, once the connection is established.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-01.png)
 
@@ -278,10 +291,9 @@ Once the connection is established, you can get the actual list of candidates fr
 
 ![The list of candidates retrieved from the HR MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-02.png)
 
-!!! tip "Debugging the MCP server locally"
-    If you are a developer and you like to dig into the MCP server implementation, you can add breakpoints to the `HRTools.cs` file and attach a debugger from Visual Studio Code. You will be able to dig into the code and debug the actual MCP server in action.
+You can also make the agent available in the Microsoft 365 Copilot Chat. To do so, publish the agent by seleting the **Publish** command in the upper right corner and confirming that you want to publish it. 
 
-You can also make the agent available in the Microsoft 365 Copilot Chat. Select the 1️⃣ **Channels** section, then select the 2️⃣ **Teams and Microsoft 365 Copilot** channel, check the 3️⃣ **Make agent available in Microsoft 365 Copilot** option, and then select the 4️⃣ **Add channel** command. Wait for the channel to be enabled, then close the channel side panel and publish the agent again selecting the **Publish** command of the agent in the top right corner.
+Once the agent is published select the 1️⃣ **Channels** section, then select the 2️⃣ **Teams and Microsoft 365 Copilot** channel, check the 3️⃣ **Make agent available in Microsoft 365 Copilot** option, and then select the 4️⃣ **Add channel** command. Wait for the channel to be enabled, then close the channel side panel and publish the agent again selecting the **Publish** command of the agent in the top right corner.
 
 ![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel. There is a checkbox to make the agent available in Microsoft 365 Copilot and a command to "Add channel".](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-01.png)
 
@@ -290,9 +302,6 @@ Now, open the **Teams and Microsoft 365 Copilot** channel again and select the c
 ![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel with the "See agent in Microsoft 365" command highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-02.png)
 
 You will see the interface to add the agent to Microsoft 365 Copilot, select **Add** and then **Open**, in order to play with the agent in Microsoft 365 Copilot.
-
-!!! info "Agent details"
-    If you like, through the **Teams and Microsoft 365 Copilot** channel configuration panel, you can also provide additional details about the agent like a description, a custom icon, etc.
 
 ![The interface to add the agent to Microsoft 365 Copilot. There are information about the agent and a command to "Add" the agent to Microsoft 365 Copilot.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-03.png)
 
@@ -317,8 +326,7 @@ Once connected, you will be able to run again the prompt and get the expected re
 It is now time to test a much more advanced tool, like the `add_candidate` one to add a new candidate to the HR system. Use the following prompt:
 
 ```
-Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, 
-email: john.smith@email.com, speaks English and Spanish
+Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, email: john.smith@email.com, speaks English and Spanish
 ```
 
 The agent will understand your intent, will extract the input arguments for the `add_candidate` tool, and will invoke it adding a new candidate to the list. The response from the MCP server will be a simple confirmation.
