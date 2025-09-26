@@ -108,19 +108,16 @@ devtunnel user login
 - If prompted by the login dialog, select "No, this app only"
 - Host your dev tunnel, executing the following commands:
 
-!!! important
-    Replace the `hr-mcp` name suggested below with whatever name you like, in order to have a unique name for your dev tunnel. For example, if your name is Rose you can use `hr-mcp-rose` as the name for your tunnel. In case you will get an error like `Request not permitted. Unauthorized tunnel creation access ...` it means that someone else is already using that name. To solve the issue, simply provide a different name.
-
 ```
-devtunnel create hr-mcp -a --host-header unchanged
+devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged
 ```
 
 ```
-devtunnel port create hr-mcp -p 47002
+devtunnel port create hr-mcp-@lab.User.Id -p 47002
 ```
 
 ```
-devtunnel host hr-mcp
+devtunnel host hr-mcp-@lab.User.Id
 ```
 
 The command line will display the connection information, such as:
@@ -129,7 +126,7 @@ The command line will display the connection information, such as:
 
 Copy the "Connect via browser" URL and save it in a safe place.
 
-Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp` (or whatever else is the name of your tunnel).
+Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp--@lab.User.Id`.
 
 ### Step 4: Testing the MCP server
 
@@ -246,7 +243,7 @@ A new dialog will open, allowing you to configure the new MCP server providing n
 
 Provide a name for the MCP server, for example:
 
-`HR MCP Server`
+`HR MCP Server @lab.User.Id`
 
 Provide a description, for example:
 
