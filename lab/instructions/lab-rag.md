@@ -93,6 +93,7 @@ Then, access the resource group with name **@lab.CloudResourceGroup(1).Name** an
 
 Once the container has been created, you can upload the resume files following these steps:
 
+1. Select the container to access its content
 1. Select 1️⃣ **Upload**
 1. Drag and drop the resume files or select 2️⃣ **Browse for files** and select the resume files
 1. Select the 3️⃣ **Upload** command and wait for the upload to complete

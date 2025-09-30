@@ -18,6 +18,8 @@ Use this account to log into Microsoft 365 and/or Microsoft Azure Portal:
 
 # LAB565 - Makers in action: crafting Microsoft 365 Copilot Agents for real-world
 
+## Welcome to Your Learning Journey! 🎯
+
 Welcome to this lab! In this session, you'll warm up by learning how to consume an MCP Server and how to use Azure AI Search as a knowledge source for an agent. Both objectives will be achieved while creating agents in Microsoft Copilot Studio full.
 
 The lab consists of up to 7 exercises designed to guide you step-by-step through these key concepts. Enjoy your learning journey!
@@ -44,7 +46,6 @@ The RAG patterns you've learned can be applied to many other scenarios including
 ===
 
 ## Congratulations!
-
 
 You've completed the lab! Well done on building agents and exploring how to extend Microsoft 365 Copilot with MCP Server and Azure AI Search. If you'd like to continue your learning journey, check out the Copilot Developer Camp training content at [https://aka.ms/CopilotDevCamp](https://aka.ms/CopilotDevCamp) for more resources and advanced scenarios.
 

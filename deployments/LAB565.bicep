@@ -99,18 +99,6 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01'
   }
 }
 
-// Create container for documents
-resource documentsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
-  parent: blobService
-  name: 'documents'
-  properties: {
-    publicAccess: 'None'
-    metadata: {
-      purpose: 'Document storage for AI processing'
-    }
-  }
-}
-
 // ===============================================
 // AZURE AI SEARCH SERVICE
 // ===============================================
@@ -199,6 +187,40 @@ resource embeddingModelDeployment 'Microsoft.CognitiveServices/accounts/deployme
 }
 
 // ===============================================
+// SECURITY ROLE ASSIGNMENTS
+// ===============================================
+
+// OpenAI host role assignment (scoped to the OpenAI resource group's scope)
+resource openAiRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+  properties: {
+    principalId: searchService.identity.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+  }
+}
+
+// Storage Blob Data Reader role (scoped to the storage resource group)
+resource storageReaderRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1')
+  properties: {
+    principalId: searchService.identity.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1')
+  }
+}
+
+// Storage Blob Data Contributor role (scoped to the storage resource group)
+resource storageContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  properties: {
+    principalId: searchService.identity.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  }
+}
+
+// ===============================================
 // OUTPUTS
 // ===============================================
 
@@ -207,9 +229,6 @@ output storageAccountName string = storageAccount.name
 
 @description('Storage account primary endpoint')
 output storageAccountPrimaryEndpoint string = storageAccount.properties.primaryEndpoints.blob
-
-@description('Documents container name')
-output documentsContainerName string = documentsContainer.name
 
 @description('AI Search service name')
 output searchServiceName string = searchService.name
