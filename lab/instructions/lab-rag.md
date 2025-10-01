@@ -48,7 +48,7 @@ Specifically, in this lab module you are going to rely on a series of pre-provis
 - **Azure Storage Account**: used to store a list of resume files used as the knowledge base of the agent
 - **Azure OpenAI**: used to process the content of the resume files relying on a model (`text-embedding-ada-002`) specifically designed to vectorize text documents
 
-### What does `text-embedding-ada-002` do?
+### What does text-embedding-ada-002 do?
 
 The `text-embedding-ada-002` model on Azure OpenAI converts text into numeric vectors that represent the meaning of the text. This allows for vector search, where instead of matching exact words, the search finds text with similar meanings. It works with multiple languages and different content types, making it useful for comparing text across languages and formats. When used with Azure AI Search, it improves search results by finding the most relevant and contextually accurate information. This model is perfect for creating advanced search solutions and applications that need to understand natural language.
 
@@ -172,7 +172,7 @@ When users ask questions, you should:
 2. Provide detailed, accurate information based on the indexed documents
 3. Always include proper citations and references to source documents
 4. Explain your reasoning when matching candidates to requirements
-5. Suggest alternative candidates when exact matches aren't available
+5. Suggest alternative candidates when exact matches are not available
 6. Help users understand the skills and qualifications of different candidates
 
 You excel at:
