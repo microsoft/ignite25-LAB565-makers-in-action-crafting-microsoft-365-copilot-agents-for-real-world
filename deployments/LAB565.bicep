@@ -3,19 +3,22 @@
 // Creates: Storage Account, AI Search, Search Index, OpenAI Service, Text Embedding Model
 // ===============================================
 
+@description('Lab user object ID for role assignments')
+param labUserObjectId string
+
 @description('The name prefix for all resources')
 param resourcePrefix string = 'lab565'
 
 @description('The location where all resources will be deployed')
-param location string = resourceGroup().location
+param location string = 'eastus'
 
 @description('Storage account SKU')
 @allowed(['Standard_LRS', 'Standard_GRS', 'Standard_RAGRS', 'Standard_ZRS'])
-param storageAccountSku string = 'Standard_LRS'
+param storageAccountSku string = 'Standard_RAGRS'
 
 @description('AI Search service SKU')
 @allowed(['basic', 'standard', 'standard2', 'standard3', 'storage_optimized_l1', 'storage_optimized_l2'])
-param searchServiceSku string = 'basic'
+param searchServiceSku string = 'standard'
 
 @description('OpenAI service SKU')
 @allowed(['S0'])
@@ -96,6 +99,18 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01'
       days: 7
     }
     isVersioningEnabled: true
+  }
+}
+
+// Create container for resumes
+resource resumesContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
+  parent: blobService
+  name: 'resumes'
+  properties: {
+    publicAccess: 'None'
+    metadata: {
+      purpose: 'Document storage for AI processing'
+    }
   }
 }
 
@@ -190,6 +205,16 @@ resource embeddingModelDeployment 'Microsoft.CognitiveServices/accounts/deployme
 // SECURITY ROLE ASSIGNMENTS
 // ===============================================
 
+// Cognitive Services User for Search Service
+resource CogsUserSPRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, 'sp-cogs-user', 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  properties: {
+    principalId: searchService.identity.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  }
+}
+
 // OpenAI host role assignment (scoped to the OpenAI resource group's scope)
 resource openAiRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(subscription().id, resourceGroup().id, searchService.name, '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
@@ -221,6 +246,87 @@ resource storageContributorRoleAssignment 'Microsoft.Authorization/roleAssignmen
 }
 
 // ===============================================
+// LAB USER ROLE ASSIGNMENTS
+// ===============================================
+
+// Contributor at RG scope
+resource userRgContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, labUserObjectId, 'b24988ac-6180-42a0-ab88-20f7382dd24c')
+  scope: resourceGroup()
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')
+  }
+}
+
+// Storage Blob Data Contributor role for lab user
+resource userStorageContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, storageAccount.name, labUserObjectId, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  scope: storageAccount
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  }
+}
+
+// Search Service Contributor role for lab user
+resource userSearchContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, labUserObjectId, '7ca78c08-252a-4471-8644-bb5ff32d4ba0')
+  scope: searchService
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7ca78c08-252a-4471-8644-bb5ff32d4ba0')
+  }
+}
+
+// Search Index Data Reader role for lab user
+resource userSearchIndexContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, searchService.name, labUserObjectId, '1407120a-92aa-4202-b7e9-c0e197c71c8f')
+  scope: searchService
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '1407120a-92aa-4202-b7e9-c0e197c71c8f')
+  }
+}
+
+// Cognitive Services Contributor role for lab user
+resource userOpenAiContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, openAiService.name, labUserObjectId, '25fbc0a9-bd7c-42a3-aa1a-3b75d497ee68')
+  scope: openAiService
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '25fbc0a9-bd7c-42a3-aa1a-3b75d497ee68')
+  }
+}
+
+// Cognitive Services OpenAI User role for lab user
+resource userOpenAiUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, openAiService.name, labUserObjectId, '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+  scope: openAiService
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+  }
+}
+
+// Cognitive Services User for Lab User
+resource CogsUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(subscription().id, resourceGroup().id, labUserObjectId, 'user-cogs-user', 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  scope: searchService
+  properties: {
+    principalId: labUserObjectId
+    principalType: 'User'
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  }
+}
+
+// ===============================================
 // OUTPUTS
 // ===============================================
 
@@ -229,6 +335,9 @@ output storageAccountName string = storageAccount.name
 
 @description('Storage account primary endpoint')
 output storageAccountPrimaryEndpoint string = storageAccount.properties.primaryEndpoints.blob
+
+@description('Resumes container name')
+output resumesContainerName string = resumesContainer.name
 
 @description('AI Search service name')
 output searchServiceName string = searchService.name
@@ -250,6 +359,9 @@ output resourceGroupLocation string = location
 
 @description('Unique suffix used for resource naming')
 output uniqueSuffix string = uniqueSuffix
+
+@description('Lab user object ID')
+output labUserObjectId string = labUserObjectId
 
 // ===============================================
 // USAGE NOTES

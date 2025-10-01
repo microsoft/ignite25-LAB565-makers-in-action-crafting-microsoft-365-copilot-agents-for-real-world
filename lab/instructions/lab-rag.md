@@ -79,21 +79,13 @@ Navigate to +++https://portal.azure.com/+++ and login with the Microsoft 365 wor
 
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
-**Password: +++@lab.CloudPortalCredential(User1).Password+++**
+**Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
 Skip the Azure tour, unless you want to go through it.
 Then, access the resource group with name **@lab.CloudResourceGroup(1).Name** and in there access the Azure Storage Account service instance.
 
-1. Select the 1️⃣ **Containers** in the **Data storage** group of commands in the left navigation
-1. Select the 2️⃣ **+ Add container** command in the command bar
-1. Provide a name 3️⃣ for the new container, for example `resumes`
-1. Select 4️⃣ **Create** to create the actual container
-
-![The Azure Storage Account service instance while showing the "Containers" page. There is a command to "+ Add container" highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-storage-02.png)
-
-Once the container has been created, you can upload the resume files following these steps:
-
-1. Select the container to access its content
+1. Select the **Containers** in the **Data storage** group of commands in the left navigation
+1. Select the container with name `resumes` to access its content
 1. Select 1️⃣ **Upload**
 1. Drag and drop the resume files or select 2️⃣ **Browse for files** and select the resume files
 1. Select the 3️⃣ **Upload** command and wait for the upload to complete

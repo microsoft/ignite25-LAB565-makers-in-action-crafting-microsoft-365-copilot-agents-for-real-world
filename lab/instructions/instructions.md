@@ -6,17 +6,7 @@ Login to your VM with the following credentials...
 
 **Password: +++@lab.VirtualMachine(Win11-Pro-Base).Password+++** 
 
-Use this account to log into Microsoft 365 and/or Microsoft Azure Portal:
-
-**Username: +++@lab.CloudPortalCredential(User1).Username+++**
-
-**Password: +++@lab.CloudPortalCredential(User1).Password+++**
-
-<br>
-
 ---
-
-# LAB565 - Makers in action: crafting Microsoft 365 Copilot Agents for real-world
 
 ## Welcome to Your Learning Journey! 🎯
 
@@ -30,14 +20,14 @@ Each exercise is crafted to help you develop new skills, reinforce your understa
 
 ===
 
-!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md?token=GHSAT0AAAAAADKELEAF5YNSGCWGVVBQ4WNG2GWPRUA)
+!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md?token=GHSAT0AAAAAADKELEAEUIJZRFN67NLRZ4OG2G5GNQA)
 
 Congratulations! You have completed Part 1 of this Lab!
 You can now move to Part 2 and have fun integrating Azure AI Search for RAG.
 
 ===
 
-!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-rag.md?token=GHSAT0AAAAAADKELEAFC74EOPOGLRQ3ZSR22GWPSBQ)
+!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-rag.md?token=GHSAT0AAAAAADKELEAEZANCPSQE2V2NO2ME2G5GNWA)
 
 Congratulations! You have completed the lab module and you learned how to integrate Azure AI Search for RAG in Microsoft Copilot Studio!
 
@@ -49,5 +39,8 @@ The RAG patterns you've learned can be applied to many other scenarios including
 
 You've completed the lab! Well done on building agents and exploring how to extend Microsoft 365 Copilot with MCP Server and Azure AI Search. If you'd like to continue your learning journey, check out the Copilot Developer Camp training content at [https://aka.ms/CopilotDevCamp](https://aka.ms/CopilotDevCamp) for more resources and advanced scenarios.
 
-You can now close this lab environment.
+You can now end this lab by selecting the **End** button from the menu as shown below:
+
+![The final page to close the lab.](../../img/lab-end-01.png)
+
 

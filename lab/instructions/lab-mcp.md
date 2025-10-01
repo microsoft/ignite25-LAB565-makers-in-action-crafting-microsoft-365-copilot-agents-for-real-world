@@ -99,7 +99,7 @@ Now, you need to expose the MCP server with a public URL, so that your Microsoft
 
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
-**Password: +++@lab.CloudPortalCredential(User1).Password+++**
+**Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
 ```
 devtunnel user login
@@ -173,7 +173,7 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
-**Password: +++@lab.CloudPortalCredential(User1).Password+++**
+**Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
 - If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period.
 
