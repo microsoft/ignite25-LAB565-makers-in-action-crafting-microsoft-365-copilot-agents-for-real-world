@@ -41,6 +41,6 @@ You've completed the lab! Well done on building agents and exploring how to exte
 
 You can now end this lab by selecting the **End** button from the menu as shown below:
 
-![The final page to close the lab.](../../img/lab-end-01.png)
+![The final page to close the lab.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/lab-end-01.png)
 
 
