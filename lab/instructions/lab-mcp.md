@@ -95,21 +95,23 @@ Check that the MCP server is up and running. You should be able to consume the s
 Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your `localhost` via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
 - Open a new terminal windows in Visual Studio Code
-- Login with dev tunnel, executing the following command and using the Microsoft 365 work or school account:
+- Login with dev tunnel, executing the following command:
+
+```
+devtunnel user login --use-device-code-auth
+```
+
+Then copy the device code provided in the terminal window, open the browser and navigate to the URL +++https://microsoft.com/devicelogin+++.
+Paste the device code and authenticate using the Microsoft 365 work or school account:
 
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
 **Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
-```
-devtunnel user login
-```
-
-- If prompted by the login dialog, select "No, this app only"
 - Host your dev tunnel, executing the following commands:
 
 ```
-devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged
+devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
 ```
 
 ```
