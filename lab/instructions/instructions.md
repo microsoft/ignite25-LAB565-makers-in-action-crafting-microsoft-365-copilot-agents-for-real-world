@@ -20,14 +20,14 @@ Each exercise is crafted to help you develop new skills, reinforce your understa
 
 ===
 
-!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md?token=GHSAT0AAAAAADKELEAEUIJZRFN67NLRZ4OG2G5GNQA)
+!INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md)
 
 Congratulations! You have completed Part 1 of this Lab!
 You can now move to Part 2 and have fun integrating Azure AI Search for RAG.
 
 ===
 
-!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-rag.md?token=GHSAT0AAAAAADKELEAEZANCPSQE2V2NO2ME2G5GNWA)
+!INSTRUCTIONS [Integrating Azure AI Search for RAG in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-rag.md)
 
 Congratulations! You have completed the lab module and you learned how to integrate Azure AI Search for RAG in Microsoft Copilot Studio!
 
