@@ -111,8 +111,8 @@ Now configure the RAG scenario accordingly to the following settings:
 1. **Configure your Azure Blob Storage** section:
 
     - **Subscription:** Your Azure subscription
-    - **Storage account:** the Storage Account you created before
-    - **Blob container:** the new container that you just created and where you uploaded the resume files, for example `resumes`
+    - **Storage account:** the Storage Account that you can find in the resource group of this lab
+    - **Blob container:** the `resumes` container that you find in the Storage Account
     - **Blob folder:** you can leave it blank, unless you created a folders structure in the storage container
     - **Parsing mode:** use the `Default` value
     - Move **Next**
@@ -121,8 +121,8 @@ Now configure the RAG scenario accordingly to the following settings:
 
     - **Kind:** Azure OpenAI
     - **Subscription:** Your Azure subscription
-    - **Azure Open AI service:** select the Azure OpenAI instance that you created
-    - **Model deployment:** select the `text-embeddings` model that you just created
+    - **Azure Open AI service:** select the Azure OpenAI that you can find in the resource group of this lab
+    - **Model deployment:** select the `text-embeddings` model
     - **Authentication type:** the default `API Key` value is ok
     - Check the box to declare `I acknowledge that connecting to an Azure OpenAI service will incur additional costs to my account.`
     - Move **Next**

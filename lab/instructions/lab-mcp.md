@@ -186,7 +186,7 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 
 ### Step 1: Creating the new agent
 
-Once you activated the Copilot Studio license, select **Create** in the left navigation menu of Copilot Studio, then choose **Agent** to create a new agent, or simply start with the agent creation wizard that you will see for the first time.
+Once you activated the Copilot Studio license, select **Create** in the left navigation menu of Copilot Studio, then choose **+ New Agent** to create a new agent, or simply start with the agent creation wizard that you will see for the first time.
 
 Choose to **Configure** and define your new agent with the following settings:
 
