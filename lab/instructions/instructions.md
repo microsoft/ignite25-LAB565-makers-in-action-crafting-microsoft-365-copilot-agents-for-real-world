@@ -18,6 +18,8 @@ Throughout this lab, you'll gain hands-on experience with Microsoft Copilot Stud
 
 Each exercise is crafted to help you develop new skills, reinforce your understanding, and prepare you to create intelligent agents for Microsoft 365 scenarios. Don't hesitate to experiment and explore—this is your opportunity to innovate and learn in a supportive environment.
 
+![](https://m365-visitor-stats.azurewebsites.net/copilot-camp/ignite25/LAB565)
+
 ===
 
 !INSTRUCTIONS [Consuming an MCP Server in Microsoft Copilot Studio](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/lab/instructions/lab-mcp.md)
