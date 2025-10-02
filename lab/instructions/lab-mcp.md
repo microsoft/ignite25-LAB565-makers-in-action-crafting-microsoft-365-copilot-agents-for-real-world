@@ -145,17 +145,14 @@ The Node.js engine will download and run the MCP Inspector, in the terminal wind
 
 The browser will start automatically and you will see the following interface.
 
-![The web interface of the MCP Inspector. On the left there are the settings to configure the MCP Server and the "Connect" button to connect to the actual MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-inspector-02.png)
-
 Configure the MCP Inspector with the following settings:
 
 - 1️⃣ **Transport type**: Streamable HTTP
 - 2️⃣ **URL**: the URL that you saved from the "Connect via browser" of the dev tunnel
-- Expand the **Authentication** section and disable the **Authorization** header
+- Expand the 3️⃣ **Authentication** section and disable the **Authorization** header
+- Select the 4️⃣ **Connect** button to start consuming the MCP server. The connection should be successful, and you should be able to have a green bullet and the message **Connected** just below the connection handling commands.
 
-![The web interface of the MCP Inspector to edit the Authentication settings. The option "Authorization" header is disabled and highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-inspector-disable-authn-01.png)
-
-Then select the 3️⃣ **Connect** button to start consuming the MCP server. The connection should be successful, and you should be able to have a green bullet and the message **Connected** just below the connection handling commands.
+![The web interface of the MCP Inspector. On the left there are the settings to configure the MCP Server and the "Connect" button to connect to the actual MCP server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-inspector-02.png)
 
 Now, in the Tools section of the screen, select the 1️⃣ **List Tools** command to retrieve the list of tools exposed by the MCP server.
 Then, select the 2️⃣ **list_candidates** tool, and then select 3️⃣ **Run tool** to invoke the selected tool.
