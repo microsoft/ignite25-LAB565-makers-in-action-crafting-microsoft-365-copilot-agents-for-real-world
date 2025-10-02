@@ -12,7 +12,7 @@ Login to your VM with the following credentials...
 
 Welcome to this lab! In this session, you'll warm up by learning how to consume an MCP Server and how to use Azure AI Search as a knowledge source for an agent. Both objectives will be achieved while creating agents in Microsoft Copilot Studio full.
 
-The lab consists of up to 7 exercises designed to guide you step-by-step through these key concepts. Enjoy your learning journey!
+The lab consists of 6 exercises designed to guide you step-by-step through these key concepts. Enjoy your learning journey!
 
 Throughout this lab, you'll gain hands-on experience with Microsoft Copilot Studio, building practical agents that leverage real-world data and advanced AI capabilities. By the end, you'll understand how to connect your agents to external knowledge sources, integrate Azure AI Search, and utilize MCP Server endpoints to enhance your solutions.
 

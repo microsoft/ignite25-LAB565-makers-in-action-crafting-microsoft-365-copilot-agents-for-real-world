@@ -148,7 +148,7 @@ Once the vector index is created, a small dialog confirms the index creation and
 
 ![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-06.png)
 
-## Exercise 3: Creating the RAG-Enabled Agent
+## Exercise 2: Creating the RAG-Enabled Agent
 
 In this exercise you will update the Microsoft Copilot Studio agent that you created in the previous module to leverage your Azure AI Search index providing intelligent, document-backed responses about HR candidates.
 
@@ -223,7 +223,7 @@ Complete the knowledge source configuration:
 
 The knowledge source will appear in your knowledge sources table with a status of "In progress" while Copilot Studio indexes the metadata. Wait for the status to change to "Ready" before proceeding.
 
-## Exercise 4: Testing the agent
+## Exercise 3: Testing the agent
 
 In this exercise you will test your RAG-enabled agent and learn how to leverage different types of queries and use cases.
 
