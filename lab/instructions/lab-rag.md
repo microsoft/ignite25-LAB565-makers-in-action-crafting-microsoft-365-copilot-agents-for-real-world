@@ -82,7 +82,7 @@ Navigate to +++https://portal.azure.com/+++ and login with the Microsoft 365 wor
 **Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
 Skip the Azure tour, unless you want to go through it.
-Then, access the resource group with name **@lab.CloudResourceGroup(1).Name** and in there access the Azure Storage Account service instance.
+Then, access the resource group with name **LAB565-ResourceGroup** and in there access the Azure Storage Account service instance.
 
 1. Select the **Containers** in the **Data storage** group of commands in the left navigation
 1. Select the container with name `resumes` to access its content
@@ -148,6 +148,14 @@ Once the vector index is created, a small dialog confirms the index creation and
 
 ![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-06.png)
 
+Now browse to the **Overview** page of the Azure AI Search service instance and copy the URL of the service in a safe place.
+
+![The Azure AI Search overview page with the "URL" property highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-ai-search-settings-01.png)
+
+Then, select the **Settings** group of items in the left navigation bar, select **Keys**, and select the command to copy the **Primary admin key** into the clipboard. Paste it in a safe place, together with the service URL.
+
+![The Azure AI Search "keys" page with the command to copy the "Primary admin key" highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-ai-search-settings-02.png)
+
 ## Exercise 2: Creating the RAG-Enabled Agent
 
 In this exercise you will update the Microsoft Copilot Studio agent that you created in the previous module to leverage your Azure AI Search index providing intelligent, document-backed responses about HR candidates.
@@ -188,6 +196,10 @@ Always provide helpful, accurate information while respecting privacy and being 
 Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that `GPT-4o` model is selected in the **Details** panel of the agent's settings.
 
 ![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-02.png)
+
+Now, select **Tools** and disable the MCP server that you configured in the previous module of this lab. Starting from now, the knowledge base of your agent will be the one stored in Azure AI Search.
+
+![The "Tools" page of the Copilot Studio agent with the MCP server tool disabled.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-mcp-tool-disabled-01.png)
 
 ### Step 2: Adding Azure AI Search as Knowledge Source
 
@@ -238,7 +250,7 @@ Hello! Can you help me find candidates with software engineering experience?
 ```
 
 ```
-I'm looking for candidates who speak multiple languages. Can you help?
+I am looking for candidates who speak multiple languages. Can you help?
 ```
 
 ```
@@ -263,18 +275,15 @@ Test more sophisticated scenarios that demonstrate the power of RAG and vector s
 Try these advanced queries that combine multiple requirements:
 
 ```
-Find candidates suitable for a senior role that requires 5+ years of Python 
-experience and fluency in Spanish
+Find candidates suitable for a senior role that requires 5+ years of Python experience and fluency in Spanish
 ```
 
 ```
-I need someone with both frontend and backend development skills. 
-Who would be good for a full-stack position?
+I need someone with both frontend and backend development skills. Who would be good for a full-stack position?
 ```
 
 ```
-Can you recommend candidates for a data science position that requires 
-experience with machine learning frameworks?
+Can you recommend candidates for a data science position that requires experience with machine learning frameworks?
 ```
 
 ```

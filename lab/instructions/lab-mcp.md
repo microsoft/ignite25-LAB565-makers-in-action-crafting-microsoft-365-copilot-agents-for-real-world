@@ -79,7 +79,6 @@ Investigate the main elements and inspect the following files of the project:
 - `Data`: folder with the `candidates.json` file providing the list of candidates.
 - `Services`: folder with the `ICandidateService.cs` interface and the actual `CandidateService.cs` implementation of a service to load and manage the list of candidates.
 - `Tools`: folder with the `HRTools.cs` file defining the MCP tools and the `Models.cs` file defining the data models used by the tools.
-- `DevTunnel_Instructions.MD`: instructions about how to expose the MCP server via a dev tunnel.
 - `Progam.cs`: the main entry point of the project, where the MCP server gets initialized.
 
 Open a new terminal window from within Visual Studio Code or simply start a new terminal window and move to the root folder of the MCP server project that you just opened. Then install dependencies, build, and start the .NET project by invoking the following command:
@@ -113,6 +112,8 @@ Paste the device code and authenticate using the Microsoft 365 work or school ac
 ```
 devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
 ```
+
+In case you see an error like *"Tunnel service error: Conflict with existing entity. Retry tunnel operation."* it means that your devtunnel name is already allocated by someone else. Simply update the name in all the devtunnel commands trying to find a unique name.
 
 ```
 devtunnel port create hr-mcp-@lab.User.Id -p 47002
@@ -150,6 +151,9 @@ Configure the MCP Inspector with the following settings:
 
 - 1️⃣ **Transport type**: Streamable HTTP
 - 2️⃣ **URL**: the URL that you saved from the "Connect via browser" of the dev tunnel
+- Expand the **Authentication** section and disable the **Authorization** header
+
+![The web interface of the MCP Inspector to edit the Authentication settings. The option "Authorization" header is disabled and highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-inspector-disable-authn-01.png)
 
 Then select the 3️⃣ **Connect** button to start consuming the MCP server. The connection should be successful, and you should be able to have a green bullet and the message **Connected** just below the connection handling commands.
 
@@ -176,6 +180,8 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
 **Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
+
+- Wait between 10 and 15 seconds for the process to configure your personal environment to start. You will see a dialog informing you about the ongoing process.
 
 - If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period.
 
