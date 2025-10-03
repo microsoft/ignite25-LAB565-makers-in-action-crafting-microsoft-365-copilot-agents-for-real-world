@@ -46,11 +46,11 @@ Specifically, in this lab module you are going to rely on a series of pre-provis
 
 - **Azure AI Search**: the search service instance where the vector index will be stored
 - **Azure Storage Account**: used to store a list of resume files used as the knowledge base of the agent
-- **Azure OpenAI**: used to process the content of the resume files relying on a model (`text-embedding-ada-002`) specifically designed to vectorize text documents
+- **Azure OpenAI**: used to process the content of the resume files relying on a model (**text-embedding-ada-002**) specifically designed to vectorize text documents
 
 ### What does text-embedding-ada-002 do?
 
-The `text-embedding-ada-002` model on Azure OpenAI converts text into numeric vectors that represent the meaning of the text. This allows for vector search, where instead of matching exact words, the search finds text with similar meanings. It works with multiple languages and different content types, making it useful for comparing text across languages and formats. When used with Azure AI Search, it improves search results by finding the most relevant and contextually accurate information. This model is perfect for creating advanced search solutions and applications that need to understand natural language.
+The **text-embedding-ada-002** model on Azure OpenAI converts text into numeric vectors that represent the meaning of the text. This allows for vector search, where instead of matching exact words, the search finds text with similar meanings. It works with multiple languages and different content types, making it useful for comparing text across languages and formats. When used with Azure AI Search, it improves search results by finding the most relevant and contextually accurate information. This model is perfect for creating advanced search solutions and applications that need to understand natural language.
 
 The text embedding model is essential for converting both the indexed documents and user queries into vectors that can be compared for semantic similarity.
 
@@ -69,7 +69,7 @@ These sample resumes contain diverse candidate profiles with information such as
 - Language proficiencies
 - Professional certifications
 
-Review the content of these files to understand the type of information that will be searchable through your RAG-enabled agent. Notice also that the documents are written in various languages. This will not be a problem for the `text-embedding-ada-002` model or for the vector index.
+Review the content of these files to understand the type of information that will be searchable through your RAG-enabled agent. Notice also that the documents are written in various languages. This will not be a problem for the **text-embedding-ada-002** model or for the vector index.
 
 ### Step 2: Uploading sample documents in the Storage Account
 
@@ -82,10 +82,25 @@ Navigate to +++https://portal.azure.com/+++ and login with the Microsoft 365 wor
 **Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
 Skip the Azure tour, unless you want to go through it.
-Then, access the resource group with name **LAB565-ResourceGroup** and in there access the Azure Storage Account service instance.
+
+![The Azure burger menu with the "Resource groups" item highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-resource-group-01.png)
+
+Then, select the burger menu in the upper-left side of the screen, select **Resource groups** to open the list of resource groups, and select the resource group with name **LAB565-ResourceGroup**. 
+
+![The list of Azure resource groups with the "LAB565-ResourceGroup" item highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-resource-group-02.png)
+
+In the resource group you will find three pre-provisioned services:
+
+- **lab565-openai-[unique-value]**: an Azure OpenAI service instance
+- **lab565-search-[unique-value]**: an Azure AI Search service instance
+- **lab565[unique-value]**: an Azure Storage Account service instance
+
+![The list of pre-provisioned resources in the "LAB565-ResourceGroup" resource group on Azure. The Storage Account is highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-resource-group-03.png)
+
+Select and open the pre-provisioned Azure Storage Account service instance.
 
 1. Select the **Containers** in the **Data storage** group of commands in the left navigation
-1. Select the container with name `resumes` to access its content
+1. Select the container with name **resumes** to access its content
 1. Select 1️⃣ **Upload**
 1. Drag and drop the resume files or select 2️⃣ **Browse for files** and select the resume files
 1. Select the 3️⃣ **Upload** command and wait for the upload to complete
@@ -94,7 +109,11 @@ Then, access the resource group with name **LAB565-ResourceGroup** and in there 
 
 ### Step 3: Populating the Vector Index with Integrated Vectorization
 
-Once the resume files are uploaded go back to the home page of the +++https://portal.azure.com/+++ and access the Azure AI Search service instance. Then select the **Import data (new)** command in the top command bar.
+Once the resume files are uploaded go back to the home page of the +++https://portal.azure.com/+++, go back to the **LAB565-ResourceGroup** resource group, and select the Azure AI Search service instance. 
+
+![The list of pre-provisioned resources in the "LAB565-ResourceGroup" resource group on Azure. The Search Service is highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/azure-ai-search-01.png)
+
+Then select the **Import data (new)** command in the top command bar.
 
 ![The Azure AI Search service instance overview page with basic information about the service instance. There is a command to "Import data (new)" highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-02.png)
 
@@ -112,9 +131,9 @@ Now configure the RAG scenario accordingly to the following settings:
 
     - **Subscription:** Your Azure subscription
     - **Storage account:** the Storage Account that you can find in the resource group of this lab
-    - **Blob container:** the `resumes` container that you find in the Storage Account
+    - **Blob container:** the **resumes** container that you find in the Storage Account
     - **Blob folder:** you can leave it blank, unless you created a folders structure in the storage container
-    - **Parsing mode:** use the `Default` value
+    - **Parsing mode:** use the **Default** value
     - Move **Next**
 
 1. **Vectorize your text** section:
@@ -122,9 +141,9 @@ Now configure the RAG scenario accordingly to the following settings:
     - **Kind:** Azure OpenAI
     - **Subscription:** Your Azure subscription
     - **Azure Open AI service:** select the Azure OpenAI that you can find in the resource group of this lab
-    - **Model deployment:** select the `text-embeddings` model
-    - **Authentication type:** the default `API Key` value is ok
-    - Check the box to declare `I acknowledge that connecting to an Azure OpenAI service will incur additional costs to my account.`
+    - **Model deployment:** select the **text-embeddings** model
+    - **Authentication type:** the default **API Key** value is ok
+    - Check the box to declare *"I acknowledge that connecting to an Azure OpenAI service will incur additional costs to my account"*.
     - Move **Next**
 
 1. **Vectorize your images** section:
@@ -139,12 +158,12 @@ Now configure the RAG scenario accordingly to the following settings:
 
 1. **Review and create** section:
 
-    - Here you can provide a prefix for the index, indexer, data source, and skillset that will be created. For example you can use the value `resumes`
+    - Here you can provide a prefix for the index, indexer, data source, and skillset that will be created. Use `resumes` for this index
     - Review the settings and when you are ready select **Create** to create and feed the vector index
 
 ![The Azure AI Search service instance page to recap the settings that will be applied when creating and feeding the vector index.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-05.png)
 
-Once the vector index is created, a small dialog confirms the index creation and availability. Select the **Start searching** command to start playing with the index. In the search index page, you can simply select the **Search** command and see the output. Notice that, for every value in the index, you also have a `text_vector` field that contains the text vectorized using the `text-embedding-ada-002` model.
+Once the vector index is created, a small dialog confirms the index creation and availability. Select the **Start searching** command to start playing with the index. In the search index page, you can simply select the **Search** command and see the output. Notice that, for every value in the index, you also have a **text_vector** field that contains the text vectorized using the **text-embedding-ada-002** model.
 
 ![The Azure AI Search vector index showing the results of a get all query with the "text_vector" field highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/azure-search-06.png)
 
@@ -162,9 +181,11 @@ In this exercise you will update the Microsoft Copilot Studio agent that you cre
 
 ### Step 1: Updating the HR Candidate Management agent
 
-Navigate to [Microsoft Copilot Studio](https://copilotstudio.microsoft.com) and open the `HR Candidate Management` agent.
+Navigate to +++https://copilotstudio.microsoft.com+++ and open the **HR Candidate Management** agent.
 
-Update the agent's instructions as follows:
+![The agent "Overview" section with the "Edit" command to edit the "Instructions" highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-agent-edit-instructions-01.png)
+
+In the **Overview** section, select the **Edit** button of the **Instructions** section and update the agent's instructions as follows
 
 - **Instructions**: 
 
@@ -193,7 +214,7 @@ You excel at:
 Always provide helpful, accurate information while respecting privacy and being professional.
 ```
 
-Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that `GPT-4o` model is selected in the **Details** panel of the agent's settings.
+Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that **GPT-4o** model is selected in the **Details** panel of the agent's settings.
 
 ![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-02.png)
 
@@ -228,7 +249,7 @@ Configure the Azure AI Search connection:
 
 Complete the knowledge source configuration:
 
-1. Select the index with name `resumes` (or whatever else name you used when you created the index)
+1. Select the index with name **resumes** (or whatever else name you used when you created the index)
 1. Select **Add to agent** to complete the integration
 
 ![The Azure AI Search connection configuration dialog allowing you to select the index to use as the new knowledge base in the agent.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-add-knowledge-03.png)
@@ -268,7 +289,7 @@ Observe how the agent:
 
 ### Step 2: Testing Complex Query Scenarios (bonus step)
 
-This is a bonus step, depending on the leftover time you can skip it or you can go through it.
+This is a bonus step and it should take up to 5 mins to complete. Depending on the leftover time you can skip it or you can go through it.
 
 Test more sophisticated scenarios that demonstrate the power of RAG and vector search capabilities.
 

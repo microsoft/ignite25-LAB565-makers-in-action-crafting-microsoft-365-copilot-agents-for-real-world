@@ -69,17 +69,17 @@ For the sake of simplicity, all the candidates are based on a pre-defined list l
 
 ### Step 2: Building and running the MCP Server
 
-Open Visual Studio Code and the open the folder `c:\labs\hr-mcp-server`.
+Open Visual Studio Code and then open the folder `c:\labs\hr-mcp-server`.
 
 ![The outline of the HR MCP Server project in Visual Studio Code showing the server files and candidate data.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-server-01.png)
 
 Investigate the main elements and inspect the following files of the project:
 
-- `Configuration`: folder with the `HRMCPServerConfiguration.cs` file defining the configuration settings for the MCP server.
-- `Data`: folder with the `candidates.json` file providing the list of candidates.
-- `Services`: folder with the `ICandidateService.cs` interface and the actual `CandidateService.cs` implementation of a service to load and manage the list of candidates.
-- `Tools`: folder with the `HRTools.cs` file defining the MCP tools and the `Models.cs` file defining the data models used by the tools.
-- `Progam.cs`: the main entry point of the project, where the MCP server gets initialized.
+- **Configuration**: folder with the **HRMCPServerConfiguration.cs** file defining the configuration settings for the MCP server.
+- **Data**: folder with the **candidates.json** file providing the list of candidates.
+- **Services**: folder with the **ICandidateService.cs** interface and the actual **CandidateService.cs** implementation of a service to load and manage the list of candidates.
+- **Tools**: folder with the **HRTools.cs** file defining the MCP tools and the **Models.cs** file defining the data models used by the tools.
+- **Progam.cs**: the main entry point of the project, where the MCP server gets initialized.
 
 Open a new terminal window from within Visual Studio Code or simply start a new terminal window and move to the root folder of the MCP server project that you just opened. Then install dependencies, build, and start the .NET project by invoking the following command:
 
@@ -87,11 +87,11 @@ Open a new terminal window from within Visual Studio Code or simply start a new 
 dotnet run
 ```
 
-Check that the MCP server is up and running. You should be able to consume the server via browser at the URL `http://localhost:47002/`. You will see an error inside a JSON message, that's ok. It means that you are reaching the MCP server.
+Check that the MCP server is up and running. You should be able to consume the server via browser at the URL +++http://localhost:47002/+++. You will see an error inside a JSON message, that's ok. It means that you are reaching the MCP server.
 
 ### Step 3: Configure the dev tunnel
 
-Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your `localhost` via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
+Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your *localhost* via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
 - Open a new terminal windows in Visual Studio Code
 - Login with dev tunnel, executing the following command:
@@ -145,14 +145,14 @@ The Node.js engine will download and run the MCP Inspector, in the terminal wind
 
 The browser will start automatically and you will see the following interface.
 
+![The web interface of the MCP Inspector. On the left there are the settings to configure the MCP Server and the "Connect" button to connect to the actual MCP server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-inspector-02.png)
+
 Configure the MCP Inspector with the following settings:
 
 - 1️⃣ **Transport type**: Streamable HTTP
 - 2️⃣ **URL**: the URL that you saved from the "Connect via browser" of the dev tunnel
 - Expand the 3️⃣ **Authentication** section and disable the **Authorization** header
 - Select the 4️⃣ **Connect** button to start consuming the MCP server. The connection should be successful, and you should be able to have a green bullet and the message **Connected** just below the connection handling commands.
-
-![The web interface of the MCP Inspector. On the left there are the settings to configure the MCP Server and the "Connect" button to connect to the actual MCP server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-inspector-02.png)
 
 Now, in the Tools section of the screen, select the 1️⃣ **List Tools** command to retrieve the list of tools exposed by the MCP server.
 Then, select the 2️⃣ **list_candidates** tool, and then select 3️⃣ **Run tool** to invoke the selected tool.
@@ -172,13 +172,15 @@ In this exercise you are going to create a new agent in Microsoft Copilot Studio
 
 In order to use Microsoft Copilot Studio in your lab environment, you need to activate a product license following these steps:
 
-- Open a browser and go to `https://copilotstudio.microsoft.com`. Login using the work or school account of your Microsoft 365 tenant:
+- Open a browser and go to +++https://copilotstudio.microsoft.com+++. Login using the work or school account of your Microsoft 365 tenant:
 
 **Username: +++@lab.CloudPortalCredential(User1).Username+++**
 
 **Temporary Access Pass: +++@lab.CloudPortalCredential(User1).AccessToken+++**
 
-- Wait between 10 and 15 seconds for the process to configure your personal environment to start. You will see a dialog informing you about the ongoing process.
+- Wait between 10 and 15 seconds for the process to configure your personal developer environment to start. You will see a dialog informing you about the ongoing process of creating your personal environment.
+
+![The dialog informing about the developer environment creation.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-creating-environment-01.png)
 
 - If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period.
 
@@ -186,7 +188,11 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 
 ### Step 1: Creating the new agent
 
-Once you activated the Copilot Studio license, select **Create** in the left navigation menu of Copilot Studio, then choose **+ New Agent** to create a new agent, or simply start with the agent creation wizard that you will see for the first time.
+Once you activated the Copilot Studio license you might see an agent creation wizard. 
+
+![The agent creation wizard with the "Configure" option highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-new-agent-wizard-01.png)
+
+If you don't automatically see the wizard, select **Create** in the left navigation menu of Copilot Studio, then choose **+ New Agent** to create a new agent.
 
 Choose to **Configure** and define your new agent with the following settings:
 
@@ -254,7 +260,7 @@ Provide a description, for example:
 
 `Allows managing a list of candidates for the HR department`
 
-Configure the URL of the server, providing the URL that you copied from the dev tunnel with name `[Connect via browser of your dev tunnel]`.
+Configure the URL of the server, providing the URL that you copied from the dev tunnel with name **[Connect via browser of your dev tunnel]**.
 
 Select **None** as the authentication method and then select **Create** to configure the actual tool.
 
@@ -264,13 +270,13 @@ Once the tool will get created, you will see a new dialog window requesting you 
 
 ![The dialog to connect to the MCP server. There is a "Connection" status with "Not connected" value.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-05.png)
 
-Select the `Not connected` option and then select **Create a new connection**. Follow the steps and you will be able to connect to the target MCP server.
+Select the **Not connected** option and then select **Create a new connection**. In the following step, simply select **Create** to create the connection.
 
 ![The option to "Create a new connection" to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-06.png)
 
-Once the connection is completely configured, you can select the **Add and configure** command in the dialog window and see the MCP server and tools properly configured.
+Once the connection is completely configured, you can select the **Add to agent** command in the dialog window and see the MCP server and tools properly configured.
 
-![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There are buttons to "Add to agent" and to "Add and configure", as well as a button to "Cancel".](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-09.png)
+![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There are buttons to "Add to agent" and to "Add and configure", as well as a button to "Cancel".](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-09.png)
 
 All the tools exposed by the MCP server are now available to your agent, as you can verify in the window displaying the MCP server details and tools.
 
@@ -284,7 +290,7 @@ Publish your agent by selecting **Publish** in the top right corner. Once publis
 List all candidates
 ```
 
-The agent should use the MCP server's `list_candidates` tool to return a complete list of all candidates in your HR system.
+The agent should use the MCP server's **list_candidates** tool to return a complete list of all candidates in your HR system.
 However, in order to being able to consume the list of candidates you might need to connect to the target connector. As such, if Copilot Studio will ask you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
 
 ![The initial dialog with the agent, which prompts the user to open the connection manager to connect to the MCP server and then to retry the request, once the connection is established.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-01.png)
@@ -316,7 +322,7 @@ Search for candidate Alice
 
 ![The Microsoft 365 Copilot chat interface with the suggested prompts configured for the "HR Candidate Management" and the prompt "Search for candidate Alice" ready to be processed.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-01.png)
 
-Now the agent should use the MCP server's `search_candidates` tool and return only one candidate matching the search criteria.
+Now the agent should use the MCP server's **search_candidates** tool and return only one candidate matching the search criteria.
 However, since we are in the Microsoft 365 Copilot context, you will need to connect again to the MCP server, using the Microsoft Copilot Studio connections management interface.
 
 ![The Microsoft 365 Copilot chat instructing the user to "Open the connection manager" to verify credentials and connect to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-02.png)
@@ -327,19 +333,19 @@ Once connected, you will be able to run again the prompt and get the expected re
 
 ### Step 3: Advanced interaction with the agent (bonus step)
 
-This is a bonus step, depending on the leftover time you can skip it or you can go through it.
+This is a bonus step and it should take up to 5 mins to complete. Depending on the leftover time you can skip it or you can go through it.
 
-It is now time to test a much more advanced tool, like the `add_candidate` one to add a new candidate to the HR system. Use the following prompt:
+It is now time to test a much more advanced tool, like the **add_candidate** one to add a new candidate to the HR system. Use the following prompt:
 
 ```
 Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, email: john.smith@email.com, speaks English and Spanish
 ```
 
-The agent will understand your intent, will extract the input arguments for the `add_candidate` tool, and will invoke it adding a new candidate to the list. The response from the MCP server will be a simple confirmation.
+The agent will understand your intent, will extract the input arguments for the **add_candidate** tool, and will invoke it adding a new candidate to the list. The response from the MCP server will be a simple confirmation.
 
 ![The agent confirming that a new candidate has been added to the HR system via the MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-04.png)
 
-You can double check the outcome by listing again the whole list of candidates. You can find `John Smith` as a new candidate at the end of the list.
+You can double check the outcome by listing again the whole list of candidates. You can find **John Smith** as a new candidate at the end of the list.
 
 ![The updated list of candidates retrieved from the HR system via the MCP Server. The newly added candidate with name John Smith is at the end of the list.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-05.png)
 
@@ -364,4 +370,6 @@ Remove candidate bob.brown@example.com
 The agent will invoke the right tools for you and will act accordingly to your prompts.
 
 Well done! Your agent is fully functional and capable of consuming all the tools exposed by the HR MCP server.
+
+You can now close Visual Studio Code, which will also close the devtunnel.
 
