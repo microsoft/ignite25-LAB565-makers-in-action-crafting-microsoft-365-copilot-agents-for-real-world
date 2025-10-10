@@ -40,7 +40,7 @@ Every MCP Server can expose:
 The communication between an MCP Client and the corresponding MCP Server relies on two available protocols:
 
 - **stdio (local)**: for MCP Servers running locally on your environment
-- **Streamable HTTP (remote)**: for MCP Servers publicly available, like the you are going to create in this lab
+- **Streamable HTTP (remote)**: for MCP Servers publicly available, like the one you are going to create in this lab
 
 Regardless what the transport protocol is, the communication relies on JSON-RPC 2.0 messages and can be accessed anonymously or can be secured with API Keys or OAuth 2.0.
 
@@ -133,7 +133,7 @@ Be sure to leave both the dev tunnel command and the MCP server running as you d
 
 ### Step 4: Testing the MCP server
 
-You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a terminal window and run the following command:
+You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a new terminal window in Visual Studio Code and run the following command:
 
 ```
 npx @modelcontextprotocol/inspector
@@ -291,7 +291,7 @@ List all candidates
 ```
 
 The agent should use the MCP server's **list_candidates** tool to return a complete list of all candidates in your HR system.
-However, in order to being able to consume the list of candidates you might need to connect to the target connector. As such, if Copilot Studio will ask you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
+However, in order to consume the list of candidates you might need to connect to the target connector. As such, if Copilot Studio asks you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
 
 ![The initial dialog with the agent, which prompts the user to open the connection manager to connect to the MCP server and then to retry the request, once the connection is established.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-01.png)
 
@@ -299,7 +299,7 @@ Once the connection is established, you can get the actual list of candidates fr
 
 ![The list of candidates retrieved from the HR MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-02.png)
 
-You can also make the agent available in the Microsoft 365 Copilot Chat. To do so, publish the agent by seleting the **Publish** command in the upper right corner and confirming that you want to publish it. 
+You can also make the agent available in the Microsoft 365 Copilot Chat. To do so, publish the agent by selecting the **Publish** command in the upper right corner and confirming that you want to publish it. 
 
 Once the agent is published select the 1️⃣ **Channels** section, then select the 2️⃣ **Teams and Microsoft 365 Copilot** channel, check the 3️⃣ **Make agent available in Microsoft 365 Copilot** option, and then select the 4️⃣ **Add channel** command. Wait for the channel to be enabled, then close the channel side panel and publish the agent again selecting the **Publish** command of the agent in the top right corner.
 

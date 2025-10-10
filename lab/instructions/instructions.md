@@ -10,7 +10,7 @@ Login to your VM with the following credentials...
 
 ## Welcome to Your Learning Journey! 🎯
 
-Welcome to this lab! In this session, you'll warm up by learning how to consume an MCP Server and how to use Azure AI Search as a knowledge source for an agent. Both objectives will be achieved while creating agents in Microsoft Copilot Studio full.
+Welcome to this lab! In this session, you'll warm up by learning how to consume an MCP Server and how to use Azure AI Search as a knowledge source for an agent. Both objectives will be achieved while creating agents in Microsoft Copilot Studio fully.
 
 The lab consists of 6 exercises designed to guide you step-by-step through these key concepts. Enjoy your learning journey!
 
