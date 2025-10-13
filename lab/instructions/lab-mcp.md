@@ -81,7 +81,7 @@ Investigate the main elements and inspect the following files of the project:
 - **Tools**: folder with the **HRTools.cs** file defining the MCP tools and the **Models.cs** file defining the data models used by the tools.
 - **Progam.cs**: the main entry point of the project, where the MCP server gets initialized.
 
-Open a new terminal window from within Visual Studio Code or simply start a new terminal window and move to the root folder of the MCP server project that you just opened. Then install dependencies, build, and start the .NET project by invoking the following command:
+In Visual Studio Code, select the menu **Terminal** > **New Terminal** to open a new terminal window. Then move to the root folder of the MCP server project that you just opened. Install dependencies, build, and start the .NET project by invoking the following command:
 
 ```
 dotnet run
@@ -93,7 +93,7 @@ Check that the MCP server is up and running. You should be able to consume the s
 
 Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your *localhost* via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
-- Open a new terminal windows in Visual Studio Code
+- Open a new terminal (menu **Terminal** > **New Terminal**) in Visual Studio Code
 - Login with dev tunnel, executing the following command:
 
 ```
@@ -309,7 +309,7 @@ Now, open the **Teams and Microsoft 365 Copilot** channel again and select the c
 
 ![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel with the "See agent in Microsoft 365" command highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-02.png)
 
-You will see the interface to add the agent to Microsoft 365 Copilot, select **Add** and then **Open**, in order to play with the agent in Microsoft 365 Copilot.
+You will see the interface to add the agent to Microsoft 365 Copilot, select **Add** and then **Open**, in order to play with the agent in Microsoft 365 Copilot. In case of any issue, wait few seconds and then try to refresh the web page.
 
 ![The interface to add the agent to Microsoft 365 Copilot. There are information about the agent and a command to "Add" the agent to Microsoft 365 Copilot.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-03.png)
 
