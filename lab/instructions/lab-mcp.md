@@ -81,7 +81,7 @@ Investigate the main elements and inspect the following files of the project:
 - **Tools**: folder with the **HRTools.cs** file defining the MCP tools and the **Models.cs** file defining the data models used by the tools.
 - **Progam.cs**: the main entry point of the project, where the MCP server gets initialized.
 
-In Visual Studio Code, select the menu **Terminal** > **New Terminal** to open a new terminal window. Then move to the root folder of the MCP server project that you just opened. Install dependencies, build, and start the .NET project by invoking the following command:
+In Visual Studio Code, select the menu **Terminal** > **New Terminal** to open a new terminal window. If you can't find the **Terminal** menu, select the **...** menu to show all the menu items. Then move to the root folder of the MCP server project that you just opened. Install dependencies, build, and start the .NET project by invoking the following command:
 
 ```
 dotnet run
