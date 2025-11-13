@@ -25,11 +25,11 @@ By the end of this session, learners will be able to:
 
 ### 💻 Technologies Used
 
-1. Microsoft 365 Copilot
-1. Microsoft Copilot Studio
-1. MCP (Model Context Protocol)
-1. C# and the MCP SDK for C#
-1. Azure AI Search
+1. [Microsoft 365 Copilot](https://www.microsoft.com/microsoft-365-copilot)
+1. [Microsoft Copilot Studio](https://learn.microsoft.com/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
+1. [MCP (Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro)
+1. [C# and the MCP SDK for C#](https://github.com/modelcontextprotocol/csharp-sdk)
+1. [Azure AI Search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
 
 ### 🌟 Microsoft Learn MCP Server
 
