@@ -214,9 +214,9 @@ You excel at:
 Always provide helpful, accurate information while respecting privacy and being professional.
 ```
 
-Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that **GPT-4o** model is selected in the **Details** panel of the agent's settings.
+Once the agent instructions are updated, double check that the option to **Use generative AI to determine how best to respond to users and events** is enabled, in order to have the Generative AI based orchestrator configured. Also verify that **GPT-5 Chat (preview)** model is selected in the **Details** panel of the agent's settings.
 
-![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and GPT-4o model highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-08/mcs-agent-02.png)
+![The Microsoft Copilot Studio settings for the new agent with Generative Orchestrator enabled and 'GPT-5 Chat (preview)' model highlighted.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-gpt-5-01.png)
 
 Now, select **Tools** and disable the MCP server that you configured in the previous module of this lab. Starting from now, the knowledge base of your agent will be the one stored in Azure AI Search.
 
