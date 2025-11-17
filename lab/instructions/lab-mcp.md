@@ -274,13 +274,13 @@ Select the **Not connected** option and then select **Create a new connection**.
 
 ![The option to "Create a new connection" to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-06.png)
 
-Once the connection is completely configured, you can select the **Add to agent** command in the dialog window and see the MCP server and tools properly configured.
+Once the connection is completely configured, you can select the **Add and configure** command in the dialog window and see the MCP server and tools properly configured.
 
-![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There are buttons to "Add to agent" and to "Add and configure", as well as a button to "Cancel".](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-09.png)
+![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There is a button to "Add and configure", as well as a button to "Cancel".](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-09.png)
 
 All the tools exposed by the MCP server are now available to your agent, as you can verify in the window displaying the MCP server details and tools.
 
-![The details about the settings and tools of the MCP server that you just registered. There is the list of tools exposed by the server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-10.png)
+![The details about the settings and tools of the MCP server that you just registered. There is the list of tools exposed by the server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-10.png)
 
 ### Step 2: Test the new MCP server integration
 
