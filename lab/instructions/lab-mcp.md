@@ -113,7 +113,7 @@ Paste the device code and authenticate using the Microsoft 365 work or school ac
 - Host your dev tunnel, executing the following commands:
 
 ```
-devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
+devtunnel create hr-mcp-@lab.LabInstance.Id -a --host-header unchanged --expiration 2h
 ```
 
 > [!TIP]
@@ -122,14 +122,14 @@ devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
 In case you see an error like *"Tunnel service error: Conflict with existing entity. Retry tunnel operation."* it means that your devtunnel name is already allocated by someone else. Simply update the name in all the devtunnel commands trying to find a unique name.
 
 ```
-devtunnel port create hr-mcp-@lab.User.Id -p 47002
+devtunnel port create hr-mcp-@lab.LabInstance.Id -p 47002
 ```
 
 > [!TIP]
 > The above command creates a port mapping for local port 47002 (-p 47002) in the existing dev tunnel.
 
 ```
-devtunnel host hr-mcp-@lab.User.Id
+devtunnel host hr-mcp-@lab.LabInstance.Id
 ```
 
 > [!TIP]
@@ -141,7 +141,7 @@ The command line will display the connection information, such as:
 
 Copy the "Connect via browser" URL and save it in a safe place.
 
-Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp-@lab.User.Id`.
+Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp-@lab.LabInstance.Id`.
 
 ### Step 4: Testing the MCP server
 
@@ -258,7 +258,7 @@ A new dialog will open, allowing you to configure the new MCP server providing n
 
 Provide a name for the MCP server, for example:
 
-`HR MCP Server @lab.User.Id`
+`HR MCP Server @lab.LabInstance.Id`
 
 Provide a description, for example:
 
