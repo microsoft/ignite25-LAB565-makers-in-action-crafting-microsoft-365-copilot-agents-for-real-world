@@ -113,7 +113,7 @@ Paste the device code and authenticate using the Microsoft 365 work or school ac
 - Host your dev tunnel, executing the following commands:
 
 ```
-devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
+devtunnel create hr-mcp-@lab.LabInstance.Id -a --host-header unchanged --expiration 2h
 ```
 
 > [!TIP]
@@ -122,14 +122,14 @@ devtunnel create hr-mcp-@lab.User.Id -a --host-header unchanged --expiration 2h
 In case you see an error like *"Tunnel service error: Conflict with existing entity. Retry tunnel operation."* it means that your devtunnel name is already allocated by someone else. Simply update the name in all the devtunnel commands trying to find a unique name.
 
 ```
-devtunnel port create hr-mcp-@lab.User.Id -p 47002
+devtunnel port create hr-mcp-@lab.LabInstance.Id -p 47002
 ```
 
 > [!TIP]
 > The above command creates a port mapping for local port 47002 (-p 47002) in the existing dev tunnel.
 
 ```
-devtunnel host hr-mcp-@lab.User.Id
+devtunnel host hr-mcp-@lab.LabInstance.Id
 ```
 
 > [!TIP]
@@ -141,7 +141,7 @@ The command line will display the connection information, such as:
 
 Copy the "Connect via browser" URL and save it in a safe place.
 
-Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp-@lab.User.Id`.
+Be sure to leave both the dev tunnel command and the MCP server running as you do the exercises in this lab. If you need to restart it, just repeat the last command `devtunnel host hr-mcp-@lab.LabInstance.Id`.
 
 ### Step 4: Testing the MCP server
 
@@ -258,7 +258,7 @@ A new dialog will open, allowing you to configure the new MCP server providing n
 
 Provide a name for the MCP server, for example:
 
-`HR MCP Server @lab.User.Id`
+`HR MCP Server @lab.LabInstance.Id`
 
 Provide a description, for example:
 
@@ -278,13 +278,13 @@ Select the **Not connected** option and then select **Create a new connection**.
 
 ![The option to "Create a new connection" to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-06.png)
 
-Once the connection is completely configured, you can select the **Add to agent** command in the dialog window and see the MCP server and tools properly configured.
+Once the connection is completely configured, you can select the **Add and configure** command in the dialog window and see the MCP server and tools properly configured.
 
-![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There are buttons to "Add to agent" and to "Add and configure", as well as a button to "Cancel".](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-09.png)
+![The dialog to add the "HR MCP Server" connector as a tool to the current agent in Copilot Studio. There is a button to "Add and configure", as well as a button to "Cancel".](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-09.png)
 
 All the tools exposed by the MCP server are now available to your agent, as you can verify in the window displaying the MCP server details and tools.
 
-![The details about the settings and tools of the MCP server that you just registered. There is the list of tools exposed by the server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-integration-10.png)
+![The details about the settings and tools of the MCP server that you just registered. There is the list of tools exposed by the server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-integration-10.png)
 
 ### Step 2: Test the new MCP server integration
 
@@ -301,43 +301,6 @@ Once the connection is established, you can get the actual list of candidates fr
 
 ![The list of candidates retrieved from the HR MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-02.png)
 
-You can also make the agent available in the Microsoft 365 Copilot Chat. To do so, publish the agent by selecting the **Publish** command in the upper right corner and confirming that you want to publish it. 
-
-Once the agent is published select the 1️⃣ **Channels** section, then select the 2️⃣ **Teams and Microsoft 365 Copilot** channel, check the 3️⃣ **Make agent available in Microsoft 365 Copilot** option, and then select the 4️⃣ **Add channel** command. Wait for the channel to be enabled, then close the channel side panel and publish the agent again selecting the **Publish** command of the agent in the top right corner.
-
-![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel. There is a checkbox to make the agent available in Microsoft 365 Copilot and a command to "Add channel".](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-01.png)
-
-Now, open the **Teams and Microsoft 365 Copilot** channel again and select the command **See agent in Microsoft 365** to add the agent to Microsoft 365 Copilot.
-
-![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel with the "See agent in Microsoft 365" command highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-02.png)
-
-You will see the interface to add the agent to Microsoft 365 Copilot, select **Add** and then **Open**, in order to play with the agent in Microsoft 365 Copilot. 
-
-> [!WARNING]
-> If you see an error like **Something went wrong**, please wait few more minutes and try to refresh the web page. Sometimes the agent takes up to 10 mins to be ready in Microsoft 365 Copilot chat.
-
-![The interface to add the agent to Microsoft 365 Copilot. There are information about the agent and a command to "Add" the agent to Microsoft 365 Copilot.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-03.png)
-
-You can now play with the agent in Microsoft 365 Copilot, notice the suggested prompts in the UI of the agent.
-Now, for example, you can try with another prompt like:
-
-```
-Search for candidate Alice
-```
-
-![The Microsoft 365 Copilot chat interface with the suggested prompts configured for the "HR Candidate Management" and the prompt "Search for candidate Alice" ready to be processed.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-01.png)
-
-Now the agent should use the MCP server's **search_candidates** tool and return only one candidate matching the search criteria.
-
-> [!TIP]
-> If Microsft 365 Copilot Chat asks you to connect first, select the link to **Open connection manager**, connect to the MCP server using the Microsoft Copilot Studio connections management interface, and then go back to the Microsoft 365 Copilot Chat and select **Retry**.
-
-![The Microsoft 365 Copilot chat instructing the user to "Open the connection manager" to verify credentials and connect to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-02.png)
-
-Once connected, you will be able to run again the prompt and get the expected response.
-
-![Microsoft 365 Copilot showing information about the candidate Alice Johnson, who is matching the search criteria defined in the prompt.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-03.png)
-
 ### Step 3: Advanced interaction with the agent (bonus step)
 
 This is a bonus step and it should take up to 5 mins to complete. Depending on the leftover time you can skip it or you can go through it.
@@ -350,11 +313,9 @@ Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, emai
 
 The agent will understand your intent, will extract the input arguments for the **add_candidate** tool, and will invoke it adding a new candidate to the list. The response from the MCP server will be a simple confirmation.
 
-![The agent confirming that a new candidate has been added to the HR system via the MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-04.png)
+![The agent confirming that a new candidate has been added to the HR system via the MCP Server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-test-copilot-04.png)
 
 You can double check the outcome by listing again the whole list of candidates. You can find **John Smith** as a new candidate at the end of the list.
-
-![The updated list of candidates retrieved from the HR system via the MCP Server. The newly added candidate with name John Smith is at the end of the list.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-05.png)
 
 You can also have fun with other prompts like:
 
