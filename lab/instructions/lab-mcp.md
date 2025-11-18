@@ -299,38 +299,6 @@ Once the connection is established, you can get the actual list of candidates fr
 
 ![The list of candidates retrieved from the HR MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-02.png)
 
-You can also make the agent available in the Microsoft 365 Copilot Chat. To do so, publish the agent by seleting the **Publish** command in the upper right corner and confirming that you want to publish it. 
-
-Once the agent is published select the 1️⃣ **Channels** section, then select the 2️⃣ **Teams and Microsoft 365 Copilot** channel, check the 3️⃣ **Make agent available in Microsoft 365 Copilot** option, and then select the 4️⃣ **Add channel** command. Wait for the channel to be enabled, then close the channel side panel and publish the agent again selecting the **Publish** command of the agent in the top right corner.
-
-![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel. There is a checkbox to make the agent available in Microsoft 365 Copilot and a command to "Add channel".](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-01.png)
-
-Now, open the **Teams and Microsoft 365 Copilot** channel again and select the command **See agent in Microsoft 365** to add the agent to Microsoft 365 Copilot.
-
-![The interface to publish an agent in the "Teams and Microsoft 365 Copilot" channel with the "See agent in Microsoft 365" command highlighted.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-02.png)
-
-You will see the interface to add the agent to Microsoft 365 Copilot, select **Add** and then **Open**, in order to play with the agent in Microsoft 365 Copilot.
-
-![The interface to add the agent to Microsoft 365 Copilot. There are information about the agent and a command to "Add" the agent to Microsoft 365 Copilot.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/agent-publish-m365-chat-03.png)
-
-You can now play with the agent in Microsoft 365 Copilot, notice the suggested prompts in the UI of the agent.
-Now, for example, you can try with another prompt like:
-
-```
-Search for candidate Alice
-```
-
-![The Microsoft 365 Copilot chat interface with the suggested prompts configured for the "HR Candidate Management" and the prompt "Search for candidate Alice" ready to be processed.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-01.png)
-
-Now the agent should use the MCP server's **search_candidates** tool and return only one candidate matching the search criteria.
-However, since we are in the Microsoft 365 Copilot context, you will need to connect again to the MCP server, using the Microsoft Copilot Studio connections management interface.
-
-![The Microsoft 365 Copilot chat instructing the user to "Open the connection manager" to verify credentials and connect to the MCP server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-02.png)
-
-Once connected, you will be able to run again the prompt and get the expected response.
-
-![Microsoft 365 Copilot showing information about the candidate Alice Johnson, who is matching the search criteria defined in the prompt.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-03.png)
-
 ### Step 3: Advanced interaction with the agent (bonus step)
 
 This is a bonus step and it should take up to 5 mins to complete. Depending on the leftover time you can skip it or you can go through it.
@@ -343,11 +311,9 @@ Add a new candidate: John Smith, Software Engineer, skills: React, Node.js, emai
 
 The agent will understand your intent, will extract the input arguments for the **add_candidate** tool, and will invoke it adding a new candidate to the list. The response from the MCP server will be a simple confirmation.
 
-![The agent confirming that a new candidate has been added to the HR system via the MCP Server.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-04.png)
+![The agent confirming that a new candidate has been added to the HR system via the MCP Server.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcp-test-copilot-04.png)
 
 You can double check the outcome by listing again the whole list of candidates. You can find **John Smith** as a new candidate at the end of the list.
-
-![The updated list of candidates retrieved from the HR system via the MCP Server. The newly added candidate with name John Smith is at the end of the list.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-copilot-05.png)
 
 You can also have fun with other prompts like:
 
