@@ -40,7 +40,7 @@ Every MCP Server can expose:
 The communication between an MCP Client and the corresponding MCP Server relies on two available protocols:
 
 - **stdio (local)**: for MCP Servers running locally on your environment
-- **Streamable HTTP (remote)**: for MCP Servers publicly available, like the you are going to create in this lab
+- **Streamable HTTP (remote)**: for MCP Servers publicly available, like the one you are going to create in this lab
 
 Regardless what the transport protocol is, the communication relies on JSON-RPC 2.0 messages and can be accessed anonymously or can be secured with API Keys or OAuth 2.0.
 
@@ -69,7 +69,7 @@ For the sake of simplicity, all the candidates are based on a pre-defined list l
 
 ### Step 2: Building and running the MCP Server
 
-Open Visual Studio Code and then open the folder `c:\labs\hr-mcp-server`.
+Open Visual Studio Code, select **Open Folder** in the Welcome screen (or select menu **File** > **Open Folder**) and navigate to the folder `c:\labs\hr-mcp-server` (type the folder path, hit enter, and then **Select Folder**).
 
 ![The outline of the HR MCP Server project in Visual Studio Code showing the server files and candidate data.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-server-01.png)
 
@@ -81,7 +81,7 @@ Investigate the main elements and inspect the following files of the project:
 - **Tools**: folder with the **HRTools.cs** file defining the MCP tools and the **Models.cs** file defining the data models used by the tools.
 - **Progam.cs**: the main entry point of the project, where the MCP server gets initialized.
 
-Open a new terminal window from within Visual Studio Code or simply start a new terminal window and move to the root folder of the MCP server project that you just opened. Then install dependencies, build, and start the .NET project by invoking the following command:
+In Visual Studio Code, select the menu **Terminal** > **New Terminal** to open a new terminal window. If you can't find the **Terminal** menu, select the **...** menu to show all the menu items. Then move to the root folder of the MCP server project that you just opened. Install dependencies, build, and start the .NET project by invoking the following command:
 
 ```
 dotnet run
@@ -93,12 +93,15 @@ Check that the MCP server is up and running. You should be able to consume the s
 
 Now, you need to expose the MCP server with a public URL, so that your Microsoft Copilot Studio agent can consume it from the cloud. Since you are running the server locally on your development machine, you need to rely on a reverse proxy tool to expose your *localhost* via a public URL. For the sake of simplicity, you can use the dev tunnel tool provided by Microsoft, following these steps:
 
-- Open a new terminal windows in Visual Studio Code
+- Open a new terminal (menu **Terminal** > **New Terminal**) in Visual Studio Code
 - Login with dev tunnel, executing the following command:
 
 ```
 devtunnel user login --use-device-code-auth
 ```
+
+> [!TIP]
+> The above command authenticates you with the Microsoft dev tunnel service using a device code flow.
 
 Then copy the device code provided in the terminal window, open the browser and navigate to the URL +++https://microsoft.com/devicelogin+++.
 Paste the device code and authenticate using the Microsoft 365 work or school account:
@@ -113,15 +116,24 @@ Paste the device code and authenticate using the Microsoft 365 work or school ac
 devtunnel create hr-mcp-@lab.LabInstance.Id -a --host-header unchanged --expiration 2h
 ```
 
+> [!TIP]
+> The above command creates a new anonymous (-a) dev tunnel with name "hr-mcp-@lab.User.Id" that lasts 2 hours (--expiration 2h) and that preserves the original HTTP Host header when forwarding requests (--host-header unchanged).
+
 In case you see an error like *"Tunnel service error: Conflict with existing entity. Retry tunnel operation."* it means that your devtunnel name is already allocated by someone else. Simply update the name in all the devtunnel commands trying to find a unique name.
 
 ```
 devtunnel port create hr-mcp-@lab.LabInstance.Id -p 47002
 ```
 
+> [!TIP]
+> The above command creates a port mapping for local port 47002 (-p 47002) in the existing dev tunnel.
+
 ```
 devtunnel host hr-mcp-@lab.LabInstance.Id
 ```
+
+> [!TIP]
+> The above command starts actively hosting the dev tunnel, listening for requests on a public URL and forwarding traffic to localhost accordingly to the previous settings.
 
 The command line will display the connection information, such as:
 
@@ -133,7 +145,7 @@ Be sure to leave both the dev tunnel command and the MCP server running as you d
 
 ### Step 4: Testing the MCP server
 
-You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a terminal window and run the following command:
+You are now ready to test the MCP server on your local environment. For the sake of simplicity, you can use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Start a new terminal window (menu **Terminal** > **New Terminal**) in Visual Studio Code, make sure other terminals are still running, and run the following command:
 
 ```
 npx @modelcontextprotocol/inspector
@@ -182,7 +194,7 @@ In order to use Microsoft Copilot Studio in your lab environment, you need to ac
 
 ![The dialog informing about the developer environment creation.](https://raw.githubusercontent.com/microsoft/ignite25-LAB565-makers-in-action-crafting-microsoft-365-copilot-agents-for-real-world/refs/heads/main/img/mcs-creating-environment-01.png)
 
-- If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period.
+- If this is the very first time you run Copilot Studio and if you don't have a license, you will see the following screen through which you will be able to start a trial period. Keep the location as **United States** and select **Get Started**.
 
 ![The web page to start a trial period for Copilot Studio. You need to provide your country, to choose whether you want to receive messages from Microsoft about offerts, and to select to start the free trial period.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-00/mcs-trial-01.png)
 
@@ -196,18 +208,10 @@ If you don't automatically see the wizard, select **Create** in the left navigat
 
 Choose to **Configure** and define your new agent with the following settings:
 
-- **Name**: 
+- **Name**: +++HR Candidate Management+++
 
-```
-HR Candidate Management
-```
-
-- **Description**: 
-
-```
-An AI assistant that helps manage HR candidates using MCP server integration 
-for comprehensive candidate management
-```
+- **Description**: +++An AI assistant that helps manage HR candidates using MCP server integration 
+for comprehensive candidate management+++
 
 - **Instructions**: 
 
@@ -284,14 +288,12 @@ All the tools exposed by the MCP server are now available to your agent, as you 
 
 ### Step 2: Test the new MCP server integration
 
-Publish your agent by selecting **Publish** in the top right corner. Once published, test the agent in the integrated Test panel using the following prompt:
-
-```
-List all candidates
-```
+Publish your agent by selecting **Publish** in the top right corner. Once published, test the agent in the integrated Test panel using the following prompt: +++List all candidates+++
 
 The agent should use the MCP server's **list_candidates** tool to return a complete list of all candidates in your HR system.
-However, in order to being able to consume the list of candidates you might need to connect to the target connector. As such, if Copilot Studio will ask you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
+
+> [!TIP]
+> If Copilot Studio asks you to **Open connection manager**, connect to the MCP server, and then **Retry** the request.
 
 ![The initial dialog with the agent, which prompts the user to open the connection manager to connect to the MCP server and then to retry the request, once the connection is established.](https://microsoft.github.io/copilot-camp/assets/images/make/copilot-studio-06/mcp-test-01.png)
 
